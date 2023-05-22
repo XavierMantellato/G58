@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My JavaScript Project</title>
+</head>
+  <body>
+  
+	  <script type="text/javascript" src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
+	  	  
+	  <script>
+		
+		console.log("Test Log");
+		
+		getData();
+		  
+		async function getData() {
+			API = await TrimbleConnectWorkspace.connect(
+			  window.parent,
+			  (event, args) => {
+			    switch (event) {
+			      case "extension.command":
+			      //"Command executed by the user: args.data"
+				break;
+			      case "extension.accessToken":
+			      //"Accestoken or status: args.data"
+				break;
+			      case "extension.userSettingsChanged":
+			      //"User settings changed!"
+				break;
+			      default:
+			    }
+			  },
+			  30000
+			);
+
+			console.log(API);
+			console.log(API.extension);
+			console.log(API.extension.getPermission("accesstoken"));
+			//Request for the access token.
+			API.extension.getPermission("accesstoken").then(accessToken => {
+			    	//Current user access token or status: accessToken
+				console.log(accessToken);
+			});
+		}
+
+	  </script>
+    
+  </body>
+</html>

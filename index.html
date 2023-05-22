@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My JavaScript Project</title>
+	
+	<script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
+	
+	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js" 
+		slave="https://pset-api.connect.trimble.com/v1/proxy.html"></script>
+</head>
+<body>
+<!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
+
+<script type="text/javascript"
+	slave="https://pset-api.connect.trimble.com/v1/proxy.html">
+    console.log("Test log");
+    	
+    getData();
+
+    async function getData() {
+     const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
+        console.log("Event: ", event, data);
+     });
+
+     const responseProject = await API.project.getProject();
+     console.log(responseProject); // Trimble Connect project details
+     const projectId = responseProject.id;
+	    
+     const responseAccessToken = await API.extension.requestPermission("accesstoken");
+     console.log(responseAccessToken);
+     const accessToken = responseAccessToken;    
+	    
+     const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
+     const responseData = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+     })
+     const jsonData = await responseData.json();
+	    
+     /*const propertyName = 'Propriété Test';
+     const propertyValue = 'Test';
+     const filter = `properties/${propertyName} ne null`;
+     const apiUrl = `https://pset-api.connect.trimble.com/propertyset/v1/projects/${projectId}/propertyset-instances?filter=${encodeURIComponent(filter)}`;
+
+     const responseData = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+     })
+     */
+	    
+     console.log('response : ', responseData);
+     console.log('response json : ', jsonData);
+
+    }
+ </script>
+	
+</body>
+</html>
