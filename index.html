@@ -22,6 +22,8 @@
         console.log("Event: ", event, data);
      });
 
+     console.log("Window Parent: ", window.parent);
+
      const responseProject = await API.project.getProject();
      console.log("Response Project: ", responseProject); // Trimble Connect project details
      const projectId = responseProject.id;
