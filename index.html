@@ -27,7 +27,7 @@
      const projectId = responseProject.id;
 
      const responsePanel = await API.project.getCurrentProject();
-     console.log("responsePanel: ", responsePanel);
+     console.log("responseCurrentProject: ", responsePanel);
      const propertyPanelData = responsePanel;
 
      const responseAccessToken = await API.extension.requestPermission("accesstoken");
