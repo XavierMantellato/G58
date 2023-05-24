@@ -23,15 +23,15 @@
      });
 
      const responseProject = await API.project.getProject();
-     console.log(responseProject); // Trimble Connect project details
+     console.log("Response Project: ", responseProject); // Trimble Connect project details
      const projectId = responseProject.id;
 
      const responsePanel = await API.propertypanel.getPropertyPanelData();
-     console.log(responsePanel);
+     console.log("responsePanel: ", responsePanel);
      const propertyPanelData = responsePanel;
 
      const responseAccessToken = await API.extension.requestPermission("accesstoken");
-     console.log(responseAccessToken);
+     console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
