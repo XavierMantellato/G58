@@ -40,6 +40,29 @@
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         },
+        body: {
+            "libs": [
+               {
+                  "libId": "string"
+               }
+            ],
+            "defs": [
+               {
+                  "libId": "string",
+                  "defId": "string",
+                  "v": 0,
+                  "schemaV": 0
+               }
+            ],
+            "psets": [
+               {
+                  "libId": "string",
+                  "defId": "string",
+                  "link": "string",
+                  "v": 0
+               }
+            ]
+         }
      })
      const jsonData = await responseData.json();
 	    
