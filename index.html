@@ -28,10 +28,6 @@
      console.log("Response Project: ", responseProject); // Trimble Connect project details
      const projectId = responseProject.id;
 
-     const responsePanel = await API.Project.getCurrentProject();
-     console.log("responseCurrentProject: ", responsePanel);
-     const propertyPanelData = responsePanel;
-
      const responseAccessToken = await API.extension.requestPermission("accesstoken");
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
