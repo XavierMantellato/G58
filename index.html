@@ -32,7 +32,8 @@
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
      
-     const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
+     const apiUrl = `https://pset-api.connect.trimble.com/v1/me`;
+
      const responseData = await fetch(apiUrl, {
         method: 'GET',
         headers: {
