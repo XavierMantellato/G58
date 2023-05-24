@@ -32,10 +32,10 @@
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
      
-     const apiUrl = `https://pset-api.connect.trimble.com/v1/psests`;
+     const apiUrl = `https://pset-api.connect.trimble.com/v1/batch-get`;
 
      const responseData = await fetch(apiUrl, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
