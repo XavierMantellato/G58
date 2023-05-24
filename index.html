@@ -26,7 +26,7 @@
      console.log("Response Project: ", responseProject); // Trimble Connect project details
      const projectId = responseProject.id;
 
-     const responsePanel = await API.propertypanel.getPropertyPanelData();
+     const responsePanel = await API.project.getCurrentProject();
      console.log("responsePanel: ", responsePanel);
      const propertyPanelData = responsePanel;
 
