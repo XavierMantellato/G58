@@ -34,17 +34,18 @@
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
      const meUrl = `https://pset-api.connect.trimble.com/v1/`;
+     const tcpUrl = 'https://app21.connect.trimble.com/tc/api/2.0/projects';
 
-     const responseMe = await fetch(meUrl, {
+     const responseTcp = await fetch(tcpUrl, {
         method: 'Get',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         }
      });
-
-     console.log("API info:", responseMe);
-     console.log("API info json:", responseMe.json());
+     
+     console.log("TCP info:", responseTcp);
+     console.log("TCP info json:", responseTcp.json());
      
      const responseData = await fetch(apiUrl, {
         method: 'Get',
