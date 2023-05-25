@@ -33,7 +33,7 @@
      const accessToken = responseAccessToken;
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/libs/${projectId}`;
-     const meUrl = `https://pset-api.connect.trimble.com/v1/me`;
+     const meUrl = `https://pset-api.connect.trimble.com/v1/`;
 
      const responseMe = await fetch(meUrl, {
         method: 'Get',
@@ -43,15 +43,14 @@
         }
      });
 
-     console.log("bearer token info:", responseMe.email);
-     console.log("bearer token info json:", responseMe.json());
+     console.log("API info:", responseMe);
+     console.log("API info json:", responseMe.json());
      
      const responseData = await fetch(apiUrl, {
         method: 'Get',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
-          'access-control-allow-origin': 'no-cors'
+          'Authorization': `Bearer ${accessToken}`
         }
      });
 
