@@ -32,7 +32,7 @@
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
 
-     var embedToken = await API.embed.setTokens(responseAccessToken);
+     var embedToken = await API.embed.setTokens();
      var embed3DViewer = await API.embed.init3DViewer(projectId);
 
      console.log("embedToken: ", embedToken);
