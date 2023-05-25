@@ -31,16 +31,18 @@
      const responseAccessToken = await API.extension.requestPermission("accesstoken");
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
-
+// Test part
      console.log("debut test: ");
-     console.log("ModelState: ",API.ModelState);
-     console.log("modelState: ", API.modelState);
-     console.log("modelstate: ", API.modelstate);
+
+     console.log("ModelState: ", API.ModelState.loaded);
+     console.log("modelState: ", API.modelState.loaded);
+     console.log("modelstate: ", API.modelstate.loaded);
 
    //   const viewerObject = API.viewer.getModels(API.ModelState.loaded);
 
-     console.log("viewerModel: ", viewerObject);
+   //   console.log("viewerModel: ", viewerObject);
      console.log("fin test:");
+// End Test Part
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
      const meUrl = `https://pset-api.connect.trimble.com/v1/`;
