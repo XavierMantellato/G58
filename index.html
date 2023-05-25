@@ -31,6 +31,12 @@
      const responseAccessToken = await API.extension.requestPermission("accesstoken");
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
+
+     var embedToken = await API.embed.setTokens(responseAccessToken);
+     var embed3DViewer = await API.embed.init3DViewer(projectId);
+
+     console.log("embedToken: ", embedToken);
+     console.log("embed3dViewer: ", embed3DViewer);
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
      const meUrl = `https://pset-api.connect.trimble.com/v1/`;
