@@ -32,11 +32,12 @@
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
 
-     var embedToken = await API.embed.setTokens();
-     var embed3DViewer = await API.embed.init3DViewer(projectId);
+     const viewerModels = API.viewer.getModels();
 
-     console.log("embedToken: ", embedToken);
-     console.log("embed3dViewer: ", embed3DViewer);
+     console.log("viewerModels: ", viewerModels);
+     viewerModels.forEach(modelSpec => {
+        console.log("viewerModel name: ", modelSpec.name);
+     });
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
      const meUrl = `https://pset-api.connect.trimble.com/v1/`;
