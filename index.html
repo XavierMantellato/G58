@@ -34,11 +34,11 @@
 // Test part
      console.log("debut test: ");
 
-     console.log("ModelState: ", API.ModelState.loaded);
-     console.log("modelState: ", API.modelState.loaded);
-     console.log("modelstate: ", API.modelstate.loaded);
+   //   console.log("ModelState: ", API.ModelState.loaded);
+   //   console.log("modelState: ", API.modelState.loaded);
+   //   console.log("modelstate: ", API.modelstate.loaded);
 
-   //   const viewerObject = API.viewer.getModels(API.ModelState.loaded);
+     const viewerObject = API.viewer.getModels({state: "loading"});
 
    //   console.log("viewerModel: ", viewerObject);
      console.log("fin test:");
