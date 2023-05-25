@@ -32,12 +32,14 @@
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
 
+     console.log("debut test: ");
      const viewerModels = API.viewer.getModels();
 
      console.log("viewerModels: ", viewerModels);
      viewerModels.forEach(modelSpec => {
         console.log("viewerModel name: ", modelSpec.name);
      });
+     console.log("fin test:");
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
      const meUrl = `https://pset-api.connect.trimble.com/v1/`;
