@@ -43,15 +43,16 @@
         }
      });
 
-     consol.log("bearer token info:", responseMe);
+     console.log("bearer token info:", responseMe);
      
      const responseData = await fetch(apiUrl, {
         method: 'Get',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
+          'Authorization': `Bearer ${accessToken}`,
+
         }
-     })
+     });
 
      const jsonData = await responseData.json();
 	    
