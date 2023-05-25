@@ -41,7 +41,9 @@
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         }
-     })
+     });
+
+     consol.log("bearer token info:", responseMe);
      
      const responseData = await fetch(apiUrl, {
         method: 'Get',
