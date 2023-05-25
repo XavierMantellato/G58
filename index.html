@@ -33,9 +33,9 @@
      const accessToken = responseAccessToken;
 
      console.log("debut test: ");
-     const viewerObjects = API.viewer.getObjects();
+     const viewerObject = API.viewer.getModels(ModelState.Loaded);
 
-     console.log("viewerObjects: ", viewerObjects);
+     console.log("viewerModel: ", viewerObject);
      console.log("fin test:");
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
