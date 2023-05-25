@@ -44,13 +44,14 @@
      });
 
      console.log("bearer token info:", responseMe);
+     console.log("bearer token info json:", responseMe.json())
      
      const responseData = await fetch(apiUrl, {
         method: 'Get',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`,
-
+          'Access-Control-Allow-Origin': 'no-cors'
         }
      });
 
