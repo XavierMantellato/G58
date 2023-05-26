@@ -32,33 +32,30 @@
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
 // Test part
-     console.log("debut test: ");
-
-   //   console.log("ModelState: ", API.ModelState.loaded);
-   //   console.log("modelState: ", API.modelState.loaded);
-   //   console.log("modelstate: ", API.modelstate.loaded);
 
      const viewerObject = API.viewer.getModels();
 
-     console.log("viewerModel: ", viewerObject[2]);
+     console.log("viewerModel: ", viewerObject);
 
-     console.log("fin test:");
 // End Test Part
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
-     const meUrl = `https://pset-api.connect.trimble.com/v1/`;
+     const meUrl = `https://org-api.eu-west-1.connect.trimble.com/v1/forests/${projectId}/trees`;
    //   const tcpUrl = 'https://app21.connect.trimble.com/tc/api/2.0/views';
+   console.log("debut test: ");
 
-   //   const responseTcp = await fetch(tcpUrl, {
-   //      method: 'Get',
-   //      headers: {
-   //        'Content-Type': 'application/json',
-   //        'Authorization': `Bearer ${accessToken}`
-   //      }
-   //   });
+     const responseMe = await fetch(tcpMe, {
+        method: 'Get',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        }
+     });
      
-   //   console.log("TCP info:", responseTcp);
-   //   console.log("TCP info json:", responseTcp.json());
+     console.log("Test info:", responseTcp);
+     console.log("Test info json:", responseTcp.json());
+
+     console.log("fin test:");
      
      const responseData = await fetch(apiUrl, {
         method: 'Get',
