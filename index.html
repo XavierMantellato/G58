@@ -39,10 +39,10 @@
 
      const responseTestFeatures = await fetch(testFeaturesUrl, {
         method: 'Get',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
+          'Authorization': `Bearer ${accessToken}`,
+          'Access-Control-Allow-Origin':'*'
         }
      });
 
@@ -60,7 +60,7 @@
 
      console.log("viwerModelState: ", viewerModelState);
      console.log("viewerModel: ", viewerModel);
-     console.log("viewerObject: ", viewerModel.result);
+     console.log("viewerObject: ", viewerModel.json());
 
 
 // End Test Part
@@ -91,7 +91,8 @@
         method: 'Get',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
+          'Authorization': `Bearer ${accessToken}`,
+          'Access-Control-Allow-Origin':'*'
         }
      });
 
