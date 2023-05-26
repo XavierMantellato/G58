@@ -35,20 +35,6 @@
      const accessToken = responseAccessToken;
 // Test part
 
-     const testFeaturesUrl = psetBaseString.concat("/v1/libs/tcproject:features:prod");
-
-     const responseTestFeatures = await fetch(testFeaturesUrl, {
-        method: 'Get',
-        headers: {
-          'Access-Control-Allow-Origin':'*',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
-        }
-     });
-
-     console.log("responseFeatures: ",responseTestFeatures);
-     console.log("response features json: ", responseTestFeatures.json());
-
      const modelId = "-BkehdN_NAw";
      const loadedModelState = {
       state: "loaded"
@@ -76,6 +62,7 @@
      const responseMe = await fetch(meUrl, {
         method: 'Post',
         headers: {
+          'Access-Control-Allow-Origin':'*',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         }
@@ -89,9 +76,9 @@
      const responseData = await fetch(apiUrl, {
         method: 'Get',
         headers: {
+          'Access-Control-Allow-Origin':'*',
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
-          'Access-Control-Allow-Origin':'*'
+          'Authorization': `Bearer ${accessToken}`
         }
      });
 
