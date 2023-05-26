@@ -40,17 +40,14 @@
       state: "loaded"
      };
     
-     const viewerModel = 
-          API.viewer.getModels()
-                    .then(function(response) {
-                      return response.json();
-                    });
+     const viewerModel = API.viewer.getModels().response;
      const viewerObject = API.viewer.getObjectProperties(modelId);
 
-     console.log("viwerModelState: ", viewerModelState);
      console.log("viewerModel: ", viewerModel);
      console.log("viewerObject: ", viewerModel.json());
 
+     const libLinkString = "frn:lib:d73c571b-5295-4ebc-9a32-fe1c0959601f";
+     const psetLibsString = psetBaseString.concat('/libs/', libLinkString);
 
 // End Test Part
      
