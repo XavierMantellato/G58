@@ -22,18 +22,19 @@
         console.log("Event: ", event, data);
      });
 
-     const psetBaseString = "https://pset-api.eu-west-1.connect.trimble.com/";
-     const orgBaseString = "https://org-api.eu-west-1.connect.trimble.com/v1/";
-
+     
      console.log("Window Parent: ", window.parent);
-
+     
      const responseProject = await API.project.getProject();
      console.log("Response Project: ", responseProject); // Trimble Connect project details
      const projectId = responseProject.id;
-
+     
      const responseAccessToken = await API.extension.requestPermission("accesstoken");
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
+
+     const psetBaseString = 'https://pset-api.eu-west-1.connect.trimble.com/' + projectId;
+     const orgBaseString = "https://org-api.eu-west-1.connect.trimble.com/v1/";
 // Test part
 
      const modelId = "-BkehdN_NAw";
