@@ -64,8 +64,8 @@
 
 // End Test Part
      
-     const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}/defs`;
-     const meUrl = `https://org-api.eu-west-1.connect.trimble.com/v1/forests/project:${projectId}:data/trees`;
+    //  const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}/defs`;
+     const meUrl = `https://org-api.eu-west-1.connect.trimble.com/v1/forests/project%3A${projectId}%3Adata/trees`;
      const tcpUrl = 'https://web.connect.trimble.com//projects/kqafPqVOb7U/property-set-libraries';
 
     //  const responseMe = await fetch(meUrl, {
@@ -82,11 +82,10 @@
 
      console.log("fin test:");
      
-     const responseData = await fetch(apiUrl, {
+     const responseData = await fetch(meUrl, {
         method: 'Get',
         headers: {
           'Access-Control-Allow-Origin':'*',
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         }
      });
