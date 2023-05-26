@@ -34,11 +34,17 @@
 // Test part
 
      const modelId = "-BkehdN_NAw";
+     const loadedModelState = {
+      state: "loaded"
+     };
+    
      const viewerModel = API.viewer.getModels();
+     const viewerModelState = API.viewer.getModels(loadedModelState);
      const viewerObject = API.viewer.getObjectProperties(modelId);
 
+     console.log("viwerModelState: ", viewerModelState);
      console.log("viewerModel: ", viewerModel);
-     console.log("viewerObject: ", viewerObject);
+     console.log("viewerObject: ", viewerModel[2]);
 
 
 // End Test Part
