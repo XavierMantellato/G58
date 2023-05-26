@@ -33,9 +33,12 @@
      const accessToken = responseAccessToken;
 // Test part
 
-     const viewerObject = API.viewer.getModels();
+     const modelId = "-BkehdN_NAw";
+     const viewerModel = API.viewer.getModels();
+     const viewerObject = API.viewer.getObjectProperties(modelId);
 
-     console.log("viewerModel: ", viewerObject);
+     console.log("viewerModel: ", viewerModel);
+
 
 // End Test Part
      
@@ -52,8 +55,8 @@
         }
      });
      
-     console.log("Test info:", responseTcp);
-     console.log("Test info json:", responseTcp.json());
+     console.log("Test info:", responseMe);
+     console.log("Test info json:", responseMe.json());
 
      console.log("fin test:");
      
