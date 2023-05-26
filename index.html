@@ -23,6 +23,7 @@
      });
 
      const psetBaseString = "https://pset-api.eu-west-1.connect.trimble.com/";
+     const orgBaseString = "https://org-api.eu-west-1.connect.trimble.com/v1/";
 
      console.log("Window Parent: ", window.parent);
 
@@ -43,7 +44,7 @@
      const viewerModel = Array.from(await API.viewer.getModels());
      const viewerObject = await API.viewer.getObjectProperties(modelId);
 
-     console.log("viewerModel: ", viewerModel);
+     console.log("viewerModel: ", viewerModel[3]);
     //  console.log("viewerObject: ", viewerModel);
 
      const libLinkString = "frn:lib:d73c571b-5295-4ebc-9a32-fe1c0959601f";
@@ -53,9 +54,10 @@
 
      const responsePset = await fetch(psetLibsString, {
         method: 'Get',
+        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
           'Access-Control-Allow-Origin':'*',
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         }
      });
