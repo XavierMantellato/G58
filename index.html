@@ -44,13 +44,13 @@
 
      console.log("viwerModelState: ", viewerModelState);
      console.log("viewerModel: ", viewerModel);
-     console.log("viewerObject: ", viewerModel.result[2]);
+     console.log("viewerObject: ", viewerModel.result);
 
 
 // End Test Part
      
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
-     const meUrl = `https://org-api.eu-west-1.connect.trimble.com/v1/forests/${projectId}/trees`;
+     const meUrl = `https://org-api.eu-west-1.connect.trimble.com/v1/forests/project:${projectId}:data/trees`;
      const tcpUrl = 'https://web.connect.trimble.com//projects/kqafPqVOb7U/property-set-libraries';
    console.log("debut test: ");
 
