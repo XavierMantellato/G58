@@ -48,14 +48,13 @@
      console.log("viewerModel: ", viewerModel[2]);
     //  console.log("viewerObject: ", viewerModel);
 
-     const libLinkString = "frn:lib:d73c571b-5295-4ebc-9a32-fe1c0959601f";
+     const libLinkString = "frn%3Alib%3Aqi066d9wu4kuw8pz115tt3up3b4g7ph7";
      const psetLibsString = psetBaseString.concat('libs/', libLinkString);
 
      console.log("debut test: ");
 
      const responsePset = await fetch(psetLibsString, {
         method: 'Get',
-        mode: 'no-cors',
         headers: {
           'Access-Control-Allow-Origin':'*',
           'Content-Type': 'application/json',
