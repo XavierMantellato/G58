@@ -49,6 +49,8 @@
      const libLinkString = "frn:lib:d73c571b-5295-4ebc-9a32-fe1c0959601f";
      const psetLibsString = psetBaseString.concat('libs/', libLinkString);
 
+     console.log("debut test: ");
+     
      const responsePset = await fetch(psetLibsString, {
         method: 'Get',
         headers: {
@@ -63,7 +65,6 @@
      const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}/defs`;
      const meUrl = `https://org-api.eu-west-1.connect.trimble.com/v1/forests/project:${projectId}:data/trees`;
      const tcpUrl = 'https://web.connect.trimble.com//projects/kqafPqVOb7U/property-set-libraries';
-   console.log("debut test: ");
 
     //  const responseMe = await fetch(meUrl, {
     //     method: 'Post',
