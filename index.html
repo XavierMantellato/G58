@@ -22,6 +22,8 @@
         console.log("Event: ", event, data);
      });
 
+     const psetBaseString = "https://pset-api.eu-west-1.connect.trimble.com/";
+
      console.log("Window Parent: ", window.parent);
 
      const responseProject = await API.project.getProject();
@@ -32,6 +34,19 @@
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
 // Test part
+
+     const testFeaturesUrl = psetBaseString.concat("/v1/libs/tcproject:features:prod");
+
+     const responseTestFeatures = await fetch(testFeaturesUrl, {
+        method: 'Get',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        }
+     });
+
+     console.log("responseFeatures: ",responseTestFeatures);
+     console.log("response features json: ", repson.json());
 
      const modelId = "-BkehdN_NAw";
      const loadedModelState = {
@@ -49,7 +64,7 @@
 
 // End Test Part
      
-     const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}`;
+     const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}/defs`;
      const meUrl = `https://org-api.eu-west-1.connect.trimble.com/v1/forests/project:${projectId}:data/trees`;
      const tcpUrl = 'https://web.connect.trimble.com//projects/kqafPqVOb7U/property-set-libraries';
    console.log("debut test: ");
@@ -86,14 +101,16 @@
      const filter = `properties/${propertyName} ne null`;
      const apiUrl = `https://pset-api.connect.trimble.com/propertyset/v1/projects/${projectId}/propertyset-instances?filter=${encodeURIComponent(filter)}`;
 
-     const responseData = await fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
-        },
-     })
      */
+    const responseTest = await fetch(tcpUrl, {
+       method: 'GET',
+       headers: {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${accessToken}`
+       },
+    });
+
+    console.log(responseTest);
 	    
      console.log('response : ', responseData);
      console.log('response json : ', jsonData);
