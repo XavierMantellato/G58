@@ -47,7 +47,16 @@
     //  console.log("viewerObject: ", viewerModel);
 
      const libLinkString = "frn:lib:d73c571b-5295-4ebc-9a32-fe1c0959601f";
-     const psetLibsString = psetBaseString.concat('/libs/', libLinkString);
+     const psetLibsString = psetBaseString.concat('libs/', libLinkString);
+
+     const responsePset = await fetch(psetLibsString, {
+        method: 'Get',
+        headers: {
+          'Access-Control-Allow-Origin':'*',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        }
+     });
 
 // End Test Part
      
@@ -56,17 +65,17 @@
      const tcpUrl = 'https://web.connect.trimble.com//projects/kqafPqVOb7U/property-set-libraries';
    console.log("debut test: ");
 
-     const responseMe = await fetch(meUrl, {
-        method: 'Post',
-        headers: {
-          'Access-Control-Allow-Origin':'*',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
-        }
-     });
+    //  const responseMe = await fetch(meUrl, {
+    //     method: 'Post',
+    //     headers: {
+    //       'Access-Control-Allow-Origin':'*',
+    //       'Content-Type': 'application/json',
+    //       'Authorization': `Bearer ${accessToken}`
+    //     }
+    //  });
      
-     console.log("Test info:", responseMe);
-     console.log("Test info json:", responseMe.json());
+    //  console.log("Test info:", responseMe);
+    //  console.log("Test info json:", responseMe.json());
 
      console.log("fin test:");
      
