@@ -40,9 +40,9 @@
      const responseTestFeatures = await fetch(testFeaturesUrl, {
         method: 'Get',
         headers: {
+          'Access-Control-Allow-Origin':'*',
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
-          'Access-Control-Allow-Origin':'*'
+          'Authorization': `Bearer ${accessToken}`
         }
      });
 
@@ -54,8 +54,11 @@
       state: "loaded"
      };
     
-     const viewerModel = API.viewer.getModels();
-     const viewerModelState = API.viewer.getModels(loadedModelState);
+     const viewerModel = 
+          API.viewer.getModels()
+                    .then(function(response) {
+                      return response.json();
+                    });
      const viewerObject = API.viewer.getObjectProperties(modelId);
 
      console.log("viwerModelState: ", viewerModelState);
