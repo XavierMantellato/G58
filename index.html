@@ -40,7 +40,7 @@
       state: "loaded"
      };
     
-     const viewerModel = API.viewer.getModels().result;
+     const viewerModel = Array.from(API.viewer.getModels());
      const viewerObject = API.viewer.getObjectProperties(modelId);
 
      console.log("viewerModel: ", viewerModel);
@@ -50,7 +50,7 @@
      const psetLibsString = psetBaseString.concat('libs/', libLinkString);
 
      console.log("debut test: ");
-     
+
      const responsePset = await fetch(psetLibsString, {
         method: 'Get',
         headers: {
