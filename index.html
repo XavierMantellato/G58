@@ -40,8 +40,8 @@
       state: "loaded"
      };
     
-     const viewerModel = Array.from(API.viewer.getModels());
-     const viewerObject = API.viewer.getObjectProperties(modelId);
+     const viewerModel = Array.from(await API.viewer.getModels());
+     const viewerObject = await API.viewer.getObjectProperties(modelId);
 
      console.log("viewerModel: ", viewerModel);
     //  console.log("viewerObject: ", viewerModel);
