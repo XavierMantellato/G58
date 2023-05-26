@@ -39,6 +39,7 @@
 
      const responseTestFeatures = await fetch(testFeaturesUrl, {
         method: 'Get',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
@@ -46,7 +47,7 @@
      });
 
      console.log("responseFeatures: ",responseTestFeatures);
-     console.log("response features json: ", repson.json());
+     console.log("response features json: ", responseTestFeatures.json());
 
      const modelId = "-BkehdN_NAw";
      const loadedModelState = {
