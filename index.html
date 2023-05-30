@@ -57,57 +57,8 @@
         }
      });
 
-     console.log("response forest json:", responsePset.body);
-
-// End Test Part
+     console.log("response forest json:", await responsePset.json());
      
-    //  const apiUrl = `https://pset-api.connect.trimble.com/v1/psets/${projectId}/defs`;
-     const meUrl = `https://org-api.eu-west-1.connect.trimble.com/v1/forests/project%3A${projectId}%3Adata/trees`;
-     const tcpUrl = 'https://web.connect.trimble.com//projects/kqafPqVOb7U/property-set-libraries';
-
-    //  const responseMe = await fetch(meUrl, {
-    //     method: 'Post',
-    //     headers: {
-    //       'Access-Control-Allow-Origin':'*',
-    //       'Content-Type': 'application/json',
-    //       'Authorization': `Bearer ${accessToken}`
-    //     }
-    //  });
-     
-    //  console.log("Test info:", responseMe);
-    //  console.log("Test info json:", responseMe.json());
-
-     console.log("fin test:");
-     
-     const responseData = await fetch(meUrl, {
-        method: 'Get',
-        headers: {
-          'Access-Control-Allow-Origin':'*',
-          'Authorization': `Bearer ${accessToken}`
-        }
-     });
-
-     const jsonData = await responseData.json();
-	    
-     /*const propertyName = 'Propriété Test';
-     const propertyValue = 'Test';
-     const filter = `properties/${propertyName} ne null`;
-     const apiUrl = `https://pset-api.connect.trimble.com/propertyset/v1/projects/${projectId}/propertyset-instances?filter=${encodeURIComponent(filter)}`;
-
-     */
-    const responseTest = await fetch(tcpUrl, {
-       method: 'GET',
-       headers: {
-         'Content-Type': 'application/json',
-         'Authorization': `Bearer ${accessToken}`
-       },
-    });
-
-    console.log(responseTest);
-	    
-     console.log('response : ', responseData);
-     console.log('response json : ', jsonData);
-
     }
  </script>
 	
