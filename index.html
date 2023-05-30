@@ -36,24 +36,19 @@
      const psetBaseString = 'https://pset-api.connect.trimble.com/';
      const orgBaseString = "https://org-api.eu-west-1.connect.trimble.com/v1/";
 // Test part
-
-     const modelId = "-BkehdN_NAw";
-     const loadedModelState = {
-      state: "loaded"
-     };
     
      const viewerModel = Array.from(await API.viewer.getModels());
-     const viewerObject = await API.viewer.getObjectProperties(modelId);
 
      console.log("viewerModel: ", viewerModel[2]);
     //  console.log("viewerObject: ", viewerModel);
 
-     const libLinkString = "libs/frn:entity:qi066d9wu4kuw8pz115tt3up3b4g7ph7/defs";
+     const projectForestString = orgBaseString.concat(`project:${projectId}:data/trees/ProjectContext/nodes/PsetLibs`);
+
      const psetLibsString = psetBaseString.concat(libLinkString);
 
      console.log("debut test: ");
 
-     const responsePset = await fetch(psetLibsString, {
+     const responsePset = await fetch(projectForestString, {
         method: 'Get',
         headers: {
           'Access-Control-Allow-Origin':'*',
@@ -61,6 +56,8 @@
           'Authorization': `Bearer ${accessToken}`
         }
      });
+
+     console.log(responsePset)
 
 // End Test Part
      
