@@ -22,7 +22,6 @@
         console.log("Event: ", event, data);
      });
 
-     
      console.log("Window Parent: ", window.parent);
      
      const responseProject = await API.project.getProject();
@@ -39,7 +38,7 @@
     
      const viewerModel = Array.from(await API.viewer.getModels());
 
-     console.log("viewerModel: ", viewerModel[2]);
+     console.log("viewerModel: ", viewerModel);
     //  console.log("viewerObject: ", viewerModel);
 
      const projectForestString = orgBaseString.concat(`project:${projectId}:data/trees/ProjectContext/nodes/PsetLibs`);
@@ -51,7 +50,6 @@
      const responsePset = await fetch(projectForestString, {
         method: 'Get',
         headers: {
-          'Access-Control-Allow-Origin':'*',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         }
