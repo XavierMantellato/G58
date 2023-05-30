@@ -50,8 +50,9 @@
      const responsePset = await fetch(projectForestString, {
         method: 'Get',
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Accept': 'application/json'
+            'Origin':'https://web.connect.trimble.com',
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
         }
      });
 
