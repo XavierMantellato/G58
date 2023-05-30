@@ -49,8 +49,9 @@
         }
      });
 
-     const libId = responseForest.json().links;
-
+     const responseForestJson = await responseForest.json();
+     
+     console.log("response Forest json: ", responseForestJson);
      console.log("libId: ", libId);
 
      const getLibString = `/libs/${libId}`;
