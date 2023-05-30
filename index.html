@@ -55,7 +55,7 @@
      console.log("response Forest json: ", responseForestJson);
      console.log("libId: ", libId);
 
-     const getLibString = `/libs/${libId}`;
+     const getLibString = `${psetBaseString}/libs/${libId}`;
      const getLibDefsString = `${getLibString}/defs`;
 
      const responseLib = await fetch(getLibString, {
@@ -66,7 +66,7 @@
         }
      });
 
-     console.log("get library:", await responseLibDefs.json());
+     console.log("get library:", await responseLib.json());
 
      const responseLibDefs = await fetch(getLibDefsString, {
         method: 'GET',
