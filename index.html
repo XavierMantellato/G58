@@ -50,7 +50,7 @@
      });
 
      const responseForestJson = await responseForest.json();
-     const libId = responseForestJson.links[0];
+     const libId = responseForestJson.links[0].substring(8);
      
      console.log("response Forest json: ", responseForestJson);
      console.log("libId: ", libId);
