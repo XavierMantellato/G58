@@ -49,7 +49,7 @@
 
      console.log("debut test: ");
 
-     const responsePset = await fetch(projectForestString, {
+     const responseForest = await fetch(projectForestString, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -57,11 +57,32 @@
         }
      });
 
-     console.log("response forest json:", await responsePset.json());
+     const libId = responseForest.json().links[0];
 
-     const libId = responsePset.json().links[0].substring(7);
+     console.log("libId: ", libId.substring(8));
 
-     console.log("libId: ", libId);
+     const getLibString = `/libs/${libId}`;
+     const getLibDefsString = `${getLibString}/defs`;
+
+     const responseLib = await fetch(getLibString, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        }
+     });
+
+     console.log("get library:", await responseLibDefs.json());
+
+     const responseLibDefs = await fetch(getLibDefsString, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        }
+     });
+
+     console.log("get library defs:", await responseLibDefs.json());
      
     }
  </script>
