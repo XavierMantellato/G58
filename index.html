@@ -5,16 +5,16 @@
 	
 	<script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
 	
-	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js" 
-		slave="https://pset-api.connect.trimble.com/v1/proxy.html"
-      slave="https://org-api.connect.trimble.com/v1/proxy.html"></script>
+	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
 <body>
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
 
-<script type="text/javascript"
-	slave="https://pset-api.connect.trimble.com/v1/proxy.html"
-   slave="https://org-api.connect.trimble.com/v1/proxy.html">
+<script type="text/javascript">
+   xdomain.slaves({
+    "https://pset-api.connect.trimble.com": "/v1/proxy.html",
+    "https://org-api.connect.trimble.com": "/v1/proxy.html",
+  });
     console.log("Test log");
     	
     getData();
