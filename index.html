@@ -34,7 +34,7 @@
      console.log("responseAccessToken: ", responseAccessToken);
      const accessToken = responseAccessToken;
 
-     const psetBaseString = 'https://pset-api.connect.trimble.com/';
+     const psetBaseString = 'https://pset-api.connect.trimble.com/v1/';
      const orgBaseString = "https://org-api.connect.trimble.com/v1/";
 // Test part
     
@@ -58,6 +58,10 @@
      });
 
      console.log("response forest json:", await responsePset.json());
+
+     const libId = String. responsePset.json().links[0].substring(7);
+
+     console.log("libId: ", libId);
      
     }
  </script>
