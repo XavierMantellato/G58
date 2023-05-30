@@ -49,10 +49,10 @@
 
      const responsePset = await fetch(projectForestString, {
         method: 'Get',
+        mode: 'no-cors',
         headers: {
-            'Origin':'https://web.connect.trimble.com',
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
         }
      });
 
