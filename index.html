@@ -92,7 +92,7 @@
      });
 
      const firstLibDef = await responseLibDefs.json();
-     console.log("get library defs:", firstLibDef[0]);
+     console.log("get library defs:", firstLibDef.items[0]);
      const defId = firstLibDef.id;
 
      const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
