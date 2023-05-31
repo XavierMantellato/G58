@@ -41,7 +41,7 @@
 
      console.log("debut test: ");
 
-     const responseSelection = await API.viewer.getSelection();
+     const responseSelection = await API.viewer.getObjects();
      console.log("response selection: ", responseSelection);
 
      const responseForest = await fetch(projectForestString, {
