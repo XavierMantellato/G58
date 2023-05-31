@@ -25,9 +25,9 @@
 
      const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
         console.log("Event: ", event, data);
-        if (event = "viewer.onPicked")
+        if (event = "viewer.onSelectionChanged")
         {
-            selection = data;
+            selection = data[0].objectRuntimeIds[0];
         }
         console.log("selection: ", selection);
      });
