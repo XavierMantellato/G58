@@ -38,7 +38,7 @@
      const orgBaseString = "https://org-api.connect.trimble.com/v1/";
 
      const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
-     const projectForestSearchString = orgBaseString.concat(`forests/project:${projectId}:data/search`);
+     const projectForestSearchString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/search`);
 
      console.log("debut test: ");
 
@@ -61,8 +61,8 @@
         }
      });
 
-     const jsonResponseSearch = responseForestSearch.json()
-     console.log(jsonResponseSearch);
+     const jsonResponseSearch = responseForestSearch.json();
+     console.log("search response: ",jsonResponseSearch);
 
      const responseForestJson = await responseForest.json();
      const libId = responseForestJson.links[0].substring(8);
