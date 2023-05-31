@@ -61,8 +61,8 @@
         }
      });
 
-     const jsonResponseSearch = responseForestSearch.json();
-     console.log("search response: ",jsonResponseSearch);
+     const jsonResponseSearch = await responseForestSearch.json();
+     console.log("search response: ", jsonResponseSearch);
 
      const responseForestJson = await responseForest.json();
      const libId = responseForestJson.links[0].substring(8);
@@ -91,8 +91,9 @@
         }
      });
 
-     const firstLibDef = await responseLibDefs.json();
-     console.log("get library defs:", firstLibDef.items[0]);
+     const LibDefs = await responseLibDefs.json();
+     const firstLibDef = LibDefs.items[0];
+     console.log("get library defs:", firstLibDef);
      const defId = firstLibDef.id;
 
      const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
@@ -105,7 +106,7 @@
         }
      });
 
-     console.log("response pset: ", responsePset)
+     console.log("response pset: ", responsePset);
      
     }
  </script>
