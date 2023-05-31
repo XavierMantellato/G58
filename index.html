@@ -38,7 +38,7 @@
      const orgBaseString = "https://org-api.connect.trimble.com/v1/";
 
      const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
-     const projectForestSearchString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/search`);
+     const projectForestNodeString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes`);
 
      console.log("debut test: ");
 
@@ -53,7 +53,7 @@
         }
      });
 
-     const responseForestSearch = await fetch(projectForestSearchString, {
+     const responseForestSearch = await fetch(projectForestNodeString, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -92,7 +92,7 @@
      });
 
      const firstLibDef = await responseLibDefs.json();
-     console.log("get library defs:", firstLibDef);
+     console.log("get library defs:", firstLibDef[0]);
      const defId = firstLibDef.id;
 
      const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
@@ -105,7 +105,7 @@
         }
      });
 
-     console.log("response pset: ",responsePset)
+     console.log("response pset: ", responsePset)
      
     }
  </script>
