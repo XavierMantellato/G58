@@ -20,9 +20,18 @@
     getData();
 
     async function getData() {
+
+      let selection = null;
+
      const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
         console.log("Event: ", event, data);
+        if (event = "viewer.onPicked")
+        {
+            selection = event.data;
+        }
+        console.log("selection: ", selection);
      });
+
 
      console.log("Window Parent: ", window.parent);
      
