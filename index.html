@@ -44,9 +44,6 @@
 
      const responseModels = await API.viewer.getModels();
      console.log("response model: ", responseModels[2]);
-     
-     const responseSelection = await API.viewer.getObjects();
-     console.log("response selection: ", responseSelection);
 
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
@@ -83,7 +80,21 @@
         }
      });
 
-     console.log("get library defs:", await responseLibDefs.json());
+     const firstLibDef = await responseLibDefs.json()[0];
+     console.log("get library defs:", firstLibDef);
+     const defId = firstLibDef.id;
+
+     const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
+
+      const responsePset = await fetch(getLibDefsPsetString, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        }
+     });
+
+     console.log("response pset: ",responsePset)
      
     }
  </script>
