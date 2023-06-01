@@ -11,6 +11,9 @@
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
 
 <script type="text/javascript">
+   //#region  Imports
+import {ProjectClass} from "./Models/Project.js";
+   //#endregion Imports
    xdomain.slaves({
     "https://pset-api.connect.trimble.com": "/v1/proxy.html",
     "https://org-api.connect.trimble.com": "/v1/proxy.html"
@@ -33,8 +36,6 @@
       const responseProject = await API.project.getProject();
       console.log("Response Project: ", responseProject); // Trimble Connect project details
       const projectId = responseProject.id;
-
-      var project = new ProjectClass()
       
       const responseAccessToken = await API.extension.requestPermission("accesstoken");
       console.log("responseAccessToken: ", responseAccessToken);
@@ -70,6 +71,8 @@
       console.log("response app base string: ", responseAppBaseStringJson);
       
       const projectRootId = responseAppBaseStringJson.rootId;
+
+      var project = new ProjectClass(projectId, responseProject.name, projectRootId);
       
       console.log("rootId: ", projectRootId);
 
