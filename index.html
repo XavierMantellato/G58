@@ -48,9 +48,9 @@
 
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
-      console.log("response model: ", responseModel);
+      console.log("response model: ", model);
 
-      const responseLoadedModel = await API.viewer.getLoadedModel();
+      const responseLoadedModel = await API.viewer.getLoadedModel(model.id);
       console.log("responseLoadedModel: ", responseLoadedModel);
 
      const responseForest = await fetch(projectForestString, {
