@@ -51,6 +51,9 @@
       
       console.log("debut test: ");
 
+      const responseSelection = await API.viewer.getSelection();
+      console.log("responseSelection", responseSelection);
+
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
         headers: {
