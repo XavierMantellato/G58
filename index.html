@@ -8,6 +8,9 @@
 	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
 <body>
+   <script type="module">
+      import {ProjectClass} from "./Models/Project.js";
+   </script>
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
 
 <script type="text/javascript">
@@ -69,9 +72,9 @@
       
       const projectRootId = responseAppBaseStringJson.rootId;
       
-      console.log("rootId: ", projectRootId);
+      console.log("rootId: ", projectId);
 
-      const appBaseStringFolderProject = appBaseString.concat(`projects/${projectId}/folders/${projectRootId}/items`);
+      const appBaseStringFolderProject = appBaseString.concat(`projects/${projectId}/folders/${projectId}/items`);
 
      const responseAppBaseFolderString =  await fetch(appBaseStringFolderProject, {
         method: 'GET',
