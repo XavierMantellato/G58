@@ -8,6 +8,9 @@
 	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
 <body>
+   <p>
+      <div id="test"></div>
+   </p>
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
 
 <script type="text/javascript">
@@ -55,6 +58,8 @@
       
       console.log("response model: ", responseModel);
       console.log("modelId: ", model.id);
+
+      document.getElementById('test').innerHTML = model.name;
 
       const modelInfoString = modelApiBaseString.concat(`models/${model.id}`)
       
