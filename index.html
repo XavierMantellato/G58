@@ -42,7 +42,7 @@
       const orgBaseString = "https://org-api.connect.trimble.com/v1/";
       
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
-      const projectForestNodeString = orgBaseString.concat(`forests/project:${projectId}/trees`);
+      const projectForestNodeString = orgBaseString.concat(`forests`);
       
       console.log("debut test: ");
 
@@ -50,6 +50,7 @@
       const model = responseModel[2];
 
       console.log("response model: ", responseModel);
+      console.log("model: ", model);
 
       const responseLoadedModel = await API.viewer.getLoadedModel(model.id);
       console.log("responseLoadedModel: ", responseLoadedModel);
