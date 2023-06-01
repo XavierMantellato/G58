@@ -54,16 +54,6 @@
       console.log("response model: ", responseModel);
       console.log("modelId: ", model);
 
-      const modelString = modelApiBaseString.concat(`models/${model.id}`);
-
-      const responseGetModel = await fetch(modelString, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }
-     });
-
      console.log("ModelApiResponse: ", await responseGetModel.json());
 
       const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
