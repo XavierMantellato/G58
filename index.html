@@ -87,6 +87,10 @@
      const responseAppBaseFolderStringJson = await responseAppBaseFolderString.json();
 
      console.log("Folder json: ", responseAppBaseFolderStringJson);
+
+     let childFolder = responseAppBaseFolderStringJson[1];
+
+     let childFolderString = appBaseString.concat(`folders/${childFolder.id}/items`);
       // const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
 
       // console.log("responseLoadedModel: ", responseLoadedModel);
