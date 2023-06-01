@@ -81,6 +81,9 @@
         }
      });
 
+     const responseAppBaseFolderStringJson = await responseAppBaseFolderString.json();
+
+     console.log("Folder json: ", responseAppBaseFolderStringJson);
       // const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
 
       // console.log("responseLoadedModel: ", responseLoadedModel);
