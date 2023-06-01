@@ -44,6 +44,7 @@
       const psetBaseString = 'https://pset-api.connect.trimble.com/v1/';
       const orgBaseString = "https://org-api.connect.trimble.com/v1/";
       const appBaseString = "https://app21.connect.trimble.com/tc/api/2.0/";
+      const modelApiBaseString = "https://model-api21.connect.trimble.com/"
       
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
       // const projectForestNodeString = orgBaseString.concat(`forests`);
@@ -56,57 +57,21 @@
       const model = responseModel[2];
       
       console.log("response model: ", responseModel);
-      console.log("modelId: ", model);
+      console.log("modelId: ", model.id);
+
+      const modelInfoString = modelApiBaseString.concat(`models/${model.id}`)
       
-      const responseAppBaseString =  await fetch(appBaseStringProject, {
+      const responseModelInfo =  await fetch(modelInfoString, {
          method: 'GET',
          headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
          }
       });
-      
-      const responseAppBaseStringJson = await responseAppBaseString.json();
-      
-      console.log("response app base string: ", responseAppBaseStringJson);
-      
-      const projectRootId = responseAppBaseStringJson.rootId;
-      
-      console.log("rootId: ", projectId);
 
-      const appBaseStringFolderProject = appBaseString.concat(`folders/${projectRootId}/items`);
+      let modelInfo = await responseModelInfo.json();
 
-     const responseAppBaseFolderString =  await fetch(appBaseStringFolderProject, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }
-     });
-
-     const responseAppBaseFolderStringJson = await responseAppBaseFolderString.json();
-
-     console.log("Folder json: ", responseAppBaseFolderStringJson);
-
-     let childFolder = responseAppBaseFolderStringJson[1];
-
-     let childFolderString = appBaseString.concat(`folders/${childFolder.id}/items`);
-
-     const responseChildFolderItems =  await fetch(childFolderString, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }
-     });
-
-     const childFolderItems = await responseChildFolderItems.json();
-
-     console.log("ChildFolder Items: ", childFolderItems);
-
-      // const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
-
-      // console.log("responseLoadedModel: ", responseLoadedModel);
+      console.log("modelInfo:", modelInfo);
 
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
@@ -115,17 +80,6 @@
             'Authorization': `Bearer ${accessToken}`
         }
      });
-
-   //   const responseForestSearch = await fetch(projectForestNodeString, {
-   //      method: 'GET',
-   //      headers: {
-   //          'Content-Type': 'application/json',
-   //          'Authorization': `Bearer ${accessToken}`
-   //      }
-   //   });
-
-   //   const jsonResponseSearch = await responseForestSearch.json();
-   //   console.log("search response: ", jsonResponseSearch);
 
      const responseForestJson = await responseForest.json();
      const libId = responseForestJson.links[0].substring(8);
