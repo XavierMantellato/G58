@@ -42,13 +42,12 @@
       const orgBaseString = "https://org-api.connect.trimble.com/v1/";
       
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
-      const projectForestNodeString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes`);
+      const projectForestNodeString = orgBaseString.concat(`forests/project:${projectId}:data/trees`);
       
       console.log("debut test: ");
 
-      const responseModel = await API.viewer.getModels({
-         state: "loaded"
-      });
+      const responseModel = await API.viewer.getModels();
+      const model = responseModel[2];
       console.log("response model: ", responseModel);
 
       const responseLoadedModel = await API.viewer.getLoadedModel();
@@ -102,9 +101,11 @@
 
      const LibDefs = await responseLibDefs.json();
      const firstLibDef = LibDefs.items[0];
-     console.log("get library defs:", firstLibDef);
-     const defId = firstLibDef.id;
 
+     console.log("get library defs:", firstLibDef);
+     
+     const defId = firstLibDef.id;
+     
      const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
 
       const responsePset = await fetch(getLibDefsPsetString, {
