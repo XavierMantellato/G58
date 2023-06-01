@@ -13,7 +13,8 @@
    </script>
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
 
-<script type="text/javascript">
+<script type="module">
+   // import * from "./Models/Project.js";
    xdomain.slaves({
     "https://pset-api.connect.trimble.com": "/v1/proxy.html",
     "https://org-api.connect.trimble.com": "/v1/proxy.html"
@@ -29,7 +30,6 @@
      const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
         console.log("Event: ", event, data);
       });
-      
       
       console.log("Window Parent: ", window.parent);
       
