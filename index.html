@@ -61,7 +61,7 @@
 
       document.getElementById('test').innerHTML = model.name;
 
-      const modelInfoString = modelApiBaseString.concat(`models/${model.id}`)
+      const modelInfoString = modelApiBaseString.concat(`models/${model.id}/entities`)
       
       const responseModelInfo =  await fetch(modelInfoString, {
          method: 'GET',
@@ -73,7 +73,7 @@
 
       let modelInfo = await responseModelInfo.json();
 
-      console.log("modelInfo:", modelInfo);
+      console.log("modelEntities:", modelInfo);
 
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
