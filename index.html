@@ -91,6 +91,19 @@
      let childFolder = responseAppBaseFolderStringJson[1];
 
      let childFolderString = appBaseString.concat(`folders/${childFolder.id}/items`);
+
+     const responseChildFolderItems =  await fetch(childFolderString, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        }
+     });
+
+     const childFolderItems = await responseChildFolderItems.json();
+
+     console.log("ChildFolder Items: ", childFolderItems);
+
       // const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
 
       // console.log("responseLoadedModel: ", responseLoadedModel);
