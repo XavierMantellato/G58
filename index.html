@@ -47,10 +47,9 @@
       console.log("debut test: ");
 
       const responseModel = await API.viewer.getModels();
-      const responseModelJson = await responseModel.json();
-      const model = responseModelJson[2];
+      const model = responseModel[2];
 
-      console.log("response model: ", model);
+      console.log("response model: ", responseModel);
 
       const responseLoadedModel = await API.viewer.getLoadedModel(model.id);
       console.log("responseLoadedModel: ", responseLoadedModel);
