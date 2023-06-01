@@ -14,6 +14,7 @@
    xdomain.slaves({
     "https://pset-api.connect.trimble.com": "/v1/proxy.html",
     "https://org-api.connect.trimble.com": "/v1/proxy.html",
+    "https://model-api21.connect.trimble.com":"/v1/proxy.html"
   });
     console.log("Test log");
     	
@@ -40,6 +41,7 @@
       
       const psetBaseString = 'https://pset-api.connect.trimble.com/v1/';
       const orgBaseString = "https://org-api.connect.trimble.com/v1/";
+      const modeApiBaseString = "https://model-api21.connect.trimble.com/v1/";
       
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
       const projectForestNodeString = orgBaseString.concat(`forests`);
@@ -55,7 +57,7 @@
       const responseLoadedModel = await API.viewer.getLoadedModel({
          model: model.id
       });
-      
+
       console.log("responseLoadedModel: ", responseLoadedModel);
 
      const responseForest = await fetch(projectForestString, {
