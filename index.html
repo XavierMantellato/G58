@@ -43,7 +43,7 @@
       const appBaseString = "https://app21.connect.trimble.com/tc/api/2.0/";
       
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
-      const projectForestNodeString = orgBaseString.concat(`forests`);
+      // const projectForestNodeString = orgBaseString.concat(`forests`);
 
       const appBaseStringProject = appBaseString.concat(`projects/${projectId}`);
 
@@ -64,7 +64,13 @@
         }
      });
 
-     console.log("response app base string: ", await responseAppBaseString.json());
+     const responseAppBaseStringJson = await responseAppBaseString.json();
+
+     console.log("response app base string: ", responseAppBaseStringJson);
+
+     const projectRootId = responseAppBaseStringJson.rootId;
+
+     console.log("rootId: ", projectRootId);
 
       const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
 
@@ -78,13 +84,13 @@
         }
      });
 
-     const responseForestSearch = await fetch(projectForestNodeString, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }
-     });
+   //   const responseForestSearch = await fetch(projectForestNodeString, {
+   //      method: 'GET',
+   //      headers: {
+   //          'Content-Type': 'application/json',
+   //          'Authorization': `Bearer ${accessToken}`
+   //      }
+   //   });
 
      const jsonResponseSearch = await responseForestSearch.json();
      console.log("search response: ", jsonResponseSearch);
