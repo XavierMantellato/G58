@@ -74,7 +74,7 @@
       
       console.log("rootId: ", projectId);
 
-      const appBaseStringFolderProject = appBaseString.concat(`projects/${projectId}/folders/${projectId}/items`);
+      const appBaseStringFolderProject = appBaseString.concat(`folders/${projectRootId}/items`);
 
      const responseAppBaseFolderString =  await fetch(appBaseStringFolderProject, {
         method: 'GET',
