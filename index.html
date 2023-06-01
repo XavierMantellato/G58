@@ -13,8 +13,7 @@
 <script type="text/javascript">
    xdomain.slaves({
     "https://pset-api.connect.trimble.com": "/v1/proxy.html",
-    "https://org-api.connect.trimble.com": "/v1/proxy.html",
-    "https://model-api21.connect.trimble.com":"/v1/proxy.html"
+    "https://org-api.connect.trimble.com": "/v1/proxy.html"
   });
     console.log("Test log");
     	
@@ -41,10 +40,13 @@
       
       const psetBaseString = 'https://pset-api.connect.trimble.com/v1/';
       const orgBaseString = "https://org-api.connect.trimble.com/v1/";
-      const modelApiBaseString = "https://model-api21.connect.trimble.com/v1/";
+      const appBaseString = "https://app21.connect.trimble.com/tc/api/2.0/";
       
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
       const projectForestNodeString = orgBaseString.concat(`forests`);
+
+      const appBaseStringProject = appBaseString.concat(`projects/${projectId}`);
+
       
       console.log("debut test: ");
       
@@ -54,7 +56,15 @@
       console.log("response model: ", responseModel);
       console.log("modelId: ", model);
 
-     console.log("ModelApiResponse: ", await responseGetModel.json());
+      const responseAppBaseString =  await fetch(appBaseStringProject, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        }
+     });
+
+     console.log("response app base string: ", await responseAppBaseString.json());
 
       const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
 
