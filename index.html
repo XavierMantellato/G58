@@ -50,17 +50,6 @@
       const projectForestNodeString = orgBaseString.concat(`forests/project:${projectId}:data/trees`);
       
       console.log("debut test: ");
-      
-      const responseObjects = await API.viewer.getObjects({
-         ObjectState: {
-            'visible': true
-         }
-      }
-      );
-      console.log("response Objects: ", responseObjects);
-
-      const responseObjectProperties = await API.viewer.getObjectProperties(selection.modelId, selection.objectRuntimeIds);
-      console.log("response Object Properties: ", responseObjectProperties);
 
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
