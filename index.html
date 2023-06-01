@@ -27,7 +27,7 @@
         console.log("Event: ", event, data);
         if (event == "viewer.onPicked")
          {
-            selection = data;
+            selection = data.data;
             console.log("selection: ", selection);
          }
       });
