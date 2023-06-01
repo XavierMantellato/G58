@@ -8,13 +8,11 @@
 	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
 <body>
-   <script type="module">
-      import {ProjectClass} from "./Models/Project.js";
-   </script>
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
 
 <script type="module">
-   // import * from "./Models/Project.js";
+   import {ProjectClass} from "./Models/Project.js"
+
    xdomain.slaves({
     "https://pset-api.connect.trimble.com": "/v1/proxy.html",
     "https://org-api.connect.trimble.com": "/v1/proxy.html"
