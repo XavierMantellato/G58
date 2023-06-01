@@ -41,18 +41,30 @@
       
       const psetBaseString = 'https://pset-api.connect.trimble.com/v1/';
       const orgBaseString = "https://org-api.connect.trimble.com/v1/";
-      const modeApiBaseString = "https://model-api21.connect.trimble.com/v1/";
+      const modelApiBaseString = "https://model-api21.connect.trimble.com/v1/";
       
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
       const projectForestNodeString = orgBaseString.concat(`forests`);
       
       console.log("debut test: ");
-
+      
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
-
+      
       console.log("response model: ", responseModel);
-      console.log("modelId: ", model.id);
+      console.log("modelId: ", model);
+
+      const modelString = modelApiBaseString.concat(`models/${model.id}`);
+
+      const responseGetModel = await fetch(modelString, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        }
+     });
+
+     console.log("ModelApiResponse: ", await responseGetModel.json());
 
       const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
 
