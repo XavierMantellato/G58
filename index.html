@@ -25,34 +25,42 @@
 
      const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
         console.log("Event: ", event, data);
-        if (event == "viewer.onPicked")
+        if (event == "viewer.onSelectionChanged")
          {
             selection = data.data;
             console.log("selection: ", selection);
          }
       });
+      
+      
+      console.log("Window Parent: ", window.parent);
+      
+      const responseProject = await API.project.getProject();
+      console.log("Response Project: ", responseProject); // Trimble Connect project details
+      const projectId = responseProject.id;
+      
+      const responseAccessToken = await API.extension.requestPermission("accesstoken");
+      console.log("responseAccessToken: ", responseAccessToken);
+      const accessToken = responseAccessToken;
+      
+      const psetBaseString = 'https://pset-api.connect.trimble.com/v1/';
+      const orgBaseString = "https://org-api.connect.trimble.com/v1/";
+      
+      const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
+      const projectForestNodeString = orgBaseString.concat(`forests/project:${projectId}:data/trees`);
+      
+      console.log("debut test: ");
+      
+      const responseObjects = await API.viewer.getObjects({
+         ObjectState: {
+            'visible': true
+         }
+      }
+      );
+      console.log("response Objects: ", responseObjects);
 
-
-     console.log("Window Parent: ", window.parent);
-     
-     const responseProject = await API.project.getProject();
-     console.log("Response Project: ", responseProject); // Trimble Connect project details
-     const projectId = responseProject.id;
-     
-     const responseAccessToken = await API.extension.requestPermission("accesstoken");
-     console.log("responseAccessToken: ", responseAccessToken);
-     const accessToken = responseAccessToken;
-
-     const psetBaseString = 'https://pset-api.connect.trimble.com/v1/';
-     const orgBaseString = "https://org-api.connect.trimble.com/v1/";
-
-     const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
-     const projectForestNodeString = orgBaseString.concat(`forests/project:${projectId}:data/trees`);
-
-     console.log("debut test: ");
-
-     const responseModels = await API.viewer.getObjectProperties(selection.modelId, selection.objectRuntimeId);
-     console.log("response model: ", responseModels);
+      const responseObjectProperties = await API.viewer.getObjectProperties(selection.modelId, selection.objectRuntimeIds);
+      console.log("response Object Properties: ", responseObjectProperties);
 
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
