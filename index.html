@@ -46,7 +46,6 @@
       // const projectForestNodeString = orgBaseString.concat(`forests`);
 
       const appBaseStringProject = appBaseString.concat(`projects/${projectId}`);
-
       
       console.log("debut test: ");
       
@@ -55,8 +54,26 @@
       
       console.log("response model: ", responseModel);
       console.log("modelId: ", model);
-
+      
       const responseAppBaseString =  await fetch(appBaseStringProject, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+      
+      const responseAppBaseStringJson = await responseAppBaseString.json();
+      
+      console.log("response app base string: ", responseAppBaseStringJson);
+      
+      const projectRootId = responseAppBaseStringJson.rootId;
+      
+      console.log("rootId: ", projectRootId);
+
+      const appBaseStringFolderProject = appBaseString.concat(`projects/${projectId}/folders/${projectRootId}`);
+
+     const responseAppBaseFolderString =  await fetch(appBaseStringProject, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -64,17 +81,9 @@
         }
      });
 
-     const responseAppBaseStringJson = await responseAppBaseString.json();
+      // const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
 
-     console.log("response app base string: ", responseAppBaseStringJson);
-
-     const projectRootId = responseAppBaseStringJson.rootId;
-
-     console.log("rootId: ", projectRootId);
-
-      const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
-
-      console.log("responseLoadedModel: ", responseLoadedModel);
+      // console.log("responseLoadedModel: ", responseLoadedModel);
 
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
@@ -92,8 +101,8 @@
    //      }
    //   });
 
-     const jsonResponseSearch = await responseForestSearch.json();
-     console.log("search response: ", jsonResponseSearch);
+   //   const jsonResponseSearch = await responseForestSearch.json();
+   //   console.log("search response: ", jsonResponseSearch);
 
      const responseForestJson = await responseForest.json();
      const libId = responseForestJson.links[0].substring(8);
