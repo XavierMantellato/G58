@@ -73,7 +73,7 @@
 
       const appBaseStringFolderProject = appBaseString.concat(`projects/${projectId}/folders/${projectRootId}`);
 
-     const responseAppBaseFolderString =  await fetch(appBaseStringProject, {
+     const responseAppBaseFolderString =  await fetch(appBaseStringFolderProject, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
