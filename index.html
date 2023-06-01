@@ -52,7 +52,7 @@
      console.log("debut test: ");
 
      const responseModels = await API.viewer.getObjectProperties(selection.modelId, selection.objectRuntimeId);
-     console.log("response model: ", responseModels[2]);
+     console.log("response model: ", responseModels);
 
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
