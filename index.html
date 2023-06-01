@@ -46,7 +46,12 @@
       
       console.log("debut test: ");
 
-      const responseSelection = await API.viewer.getSelection();
+      const responseModel = await API.viewer.getModels({
+         state: "loaded"
+      });
+      console.log("response model: ", responseModel);
+
+      const responseSelection = await API.viewer.getLoadedModel();
       console.log("responseSelection", responseSelection);
 
      const responseForest = await fetch(projectForestString, {
