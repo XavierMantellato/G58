@@ -54,9 +54,7 @@
       console.log("response model: ", responseModel);
       console.log("modelId: ", model.id);
 
-      const responseLoadedModel = await API.viewer.getLoadedModel({
-         model: model.id
-      });
+      const responseLoadedModel = await API.viewer.getLoadedModel(`${model.id}`);
 
       console.log("responseLoadedModel: ", responseLoadedModel);
 
