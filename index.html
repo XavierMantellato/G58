@@ -10,10 +10,7 @@
 <body>
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
 
-<script type="module">
-   //#region  Imports
-import {ProjectClass} from "./Models/Project.js";
-   //#endregion Imports
+<script type="text/javascript">
    xdomain.slaves({
     "https://pset-api.connect.trimble.com": "/v1/proxy.html",
     "https://org-api.connect.trimble.com": "/v1/proxy.html"
@@ -71,8 +68,6 @@ import {ProjectClass} from "./Models/Project.js";
       console.log("response app base string: ", responseAppBaseStringJson);
       
       const projectRootId = responseAppBaseStringJson.rootId;
-
-      var project = new ProjectClass(projectId, responseProject.name, projectRootId);
       
       console.log("rootId: ", projectRootId);
 
