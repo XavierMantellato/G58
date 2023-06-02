@@ -4,7 +4,7 @@
 	<title>My JavaScript Project</title>
 	
 	<script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
-   <script src="Models/Project.js"></script>
+   <script src="./Models/Project.js"></script>
 	
 	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
@@ -105,7 +105,7 @@
 
      console.log("encoded entity frn: ", encodedEntityFrn);
 
-     let psetForEntityString = psetBaseString.concat(`psests/${encodedEntityFrn}`);
+     let psetForEntityString = psetBaseString.concat(`psests/${entityFrn}`);
 
      let responseEntityPset = await fetch(psetForEntityString, {
          method: 'GET',
