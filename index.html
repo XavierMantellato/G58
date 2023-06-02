@@ -154,9 +154,21 @@
 
      console.log("get first library def:", firstLibDef);
 
-     
-     
      const defId = firstLibDef.id;
+
+     const getEntityPsetByDefIdString = psetForEntityString.concat(`/${libId}/${defId}`);
+
+     const responseEntityPsetByDefId = await fetch(getEntityPsetByDefIdString, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        }
+     });
+
+     let entityPsetByDefId = await responseEntityPsetByDefId.json();
+
+     console.log("entityPsetByDefId", entityPsetByDefId);
      
      const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
 
