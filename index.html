@@ -170,6 +170,22 @@
 
      console.log("entityPsetByDefId", entityPsetByDefId);
 
+      var header = {
+               'Content-Type': 'application/json charset=UTF-8',
+               'Authorization': `Bearer ${accessToken}`
+             };
+
+      console.log("header", header);
+
+      var testBody = JSON.stringify({
+               props: 
+                  {
+                     prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3: 'Valeur Test Patched'
+                  }
+         });
+      
+         console.log("test body: ", testBody);
+
      const responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
         method: 'PATCH',
         headers: {
