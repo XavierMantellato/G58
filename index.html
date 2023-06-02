@@ -58,8 +58,21 @@
       // const projectForestNodeString = orgBaseString.concat(`forests`);
 
       const appBaseStringProject = appBaseString.concat(`projects/${projectId}`);
+      const appBaseFolderString = appBaseString.concat(`folders/${projectId}`);
       
       console.log("debut test: ");
+
+      const responseBaseFolder =  await fetch(appBaseFolderString, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+
+      let baseFolder = await responseBaseFolder.json();
+
+      console.log("baseFolder: ", baseFolder);
       
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
