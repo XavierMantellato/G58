@@ -188,12 +188,12 @@
 
      const responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
         method: 'PATCH',
-        body: {
+        body: JSON.stringify({
                "props": 
                   {
                      "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "Valeur Test Patched"
                   }
-         },
+         }),
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
