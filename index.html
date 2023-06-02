@@ -169,6 +169,25 @@
      let entityPsetByDefId = await responseEntityPsetByDefId.json();
 
      console.log("entityPsetByDefId", entityPsetByDefId);
+
+     const responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        },
+        body: {
+               "schemaV": 0,
+               "props": 
+                  {
+                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "Valeur Test Patched"
+                  }
+         }
+     });
+
+     let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
+
+     console.log("patched entity pSet: ", entityPsetPatch);
      
      const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
 
