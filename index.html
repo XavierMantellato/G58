@@ -188,17 +188,16 @@
 
      const responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
         method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json charset=UTF-8',
-            'Authorization': `Bearer ${accessToken}`
-        },
         body: {
-               "Content-Type":"application/json charset=URF-8",
                "props": 
                   {
                      "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "Valeur Test Patched"
                   }
-         }
+         },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        },
      });
 
      let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
