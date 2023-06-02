@@ -192,12 +192,12 @@
             'Content-Type': 'application/json charset=UTF-8',
             'Authorization': `Bearer ${accessToken}`
         },
-        body: {
+        body: JSON.stringify({
                "props": 
                   {
                      "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "Valeur Test Patched"
                   }
-         }
+         })
      });
 
      let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
