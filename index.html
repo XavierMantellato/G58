@@ -105,13 +105,13 @@
 
      console.log("encoded entity frn: ", encodedEntityFrn);
 
-     let psetForEntityString = psetBaseString.concat(`psests/${entityFrn}`);
+     let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
 
      let responseEntityPset = await fetch(psetForEntityString, {
          method: 'GET',
          headers: {
             'Content-Type': 'application/json',
-            'Authorization':`Bearer ${accessToken}`
+            'Authorization': `Bearer ${accessToken}`
          }
      });
 
@@ -162,6 +162,10 @@
             'Authorization': `Bearer ${accessToken}`
         }
      });
+
+     var projectInstance = new ProjectClass(responseProject.id, responseProject.name);
+
+     console.log("projectInstance: ",projectInstance);
 
      console.log("response pset: ", await responsePset.json());
      

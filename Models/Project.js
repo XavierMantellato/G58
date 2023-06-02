@@ -5,9 +5,4 @@ class ProjectClass {
         this.id = id;
         this.name = name;
     };
-
-    constructor(){
-        this.id = "default";
-        this.name = "default";
-        };
 }
