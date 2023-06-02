@@ -99,6 +99,8 @@
 
      let entityPset = await responseEntityPset.json();
 
+     console.log("entity Pset: ", entityPset);
+
      const responseForestJson = await responseForest.json();
      const libId = responseForestJson.links[0].substring(8);
      
