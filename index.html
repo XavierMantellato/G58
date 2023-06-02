@@ -71,9 +71,13 @@
          }
       });
 
-      let modelInfo = await responseModelInfo.json();
+      let modelInfos = await responseModelInfo.json();
 
-      console.log("modelEntities:", modelInfo);
+      console.log("modelEntities:", modelInfos);
+
+      let entityId = modelInfos[573].id;
+
+      let entityFrn = `frn:entity:${entityId}`;
 
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
@@ -82,6 +86,18 @@
             'Authorization': `Bearer ${accessToken}`
         }
      });
+
+     let psetForEntityString = psetBaseString.concat(`psests/${entityFrn}`);
+
+     let responseEntityPset = await fetch(psetForEntityString, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization':`Bearer ${accessToken}`
+         }
+     });
+
+     let entityPset = await responseEntityPset.json();
 
      const responseForestJson = await responseForest.json();
      const libId = responseForestJson.links[0].substring(8);
