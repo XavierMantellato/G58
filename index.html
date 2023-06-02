@@ -147,9 +147,14 @@
      });
 
      const LibDefs = await responseLibDefs.json();
+
+     console.log("library definitions: ", LibDefs);
+
      const firstLibDef = LibDefs.items[0];
 
-     console.log("get library defs:", firstLibDef);
+     console.log("get first library def:", firstLibDef);
+
+     
      
      const defId = firstLibDef.id;
      
