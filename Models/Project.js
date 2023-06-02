@@ -1,4 +1,4 @@
-export class ProjectClass {
+class ProjectClass {
     // Constructors
 
     constructor(id, name){
