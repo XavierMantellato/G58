@@ -87,6 +87,8 @@
 
       let entityFrn = `frn:entity:${entityId}`;
 
+      console.log("entity frn: ", entityFrn)
+
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
         headers: {
@@ -96,6 +98,8 @@
      });
 
      let encodedEntityFrn = encodeURI(entityFrn);
+
+     console.log("encoded entity frn: ", encodedEntityFrn);
 
      let psetForEntityString = psetBaseString.concat(`psests/${encodedEntityFrn}`);
 
