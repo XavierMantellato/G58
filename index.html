@@ -57,12 +57,12 @@
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
       // const projectForestNodeString = orgBaseString.concat(`forests`);
 
-      const appBaseStringProject = appBaseString.concat(`projects/${projectId}`);
+      const appBaseStringProject = appBaseString.concat(`projects`);
       const appBaseFolderString = appBaseString.concat(`folders/${projectId}`);
       
       console.log("debut test: ");
 
-      const responseBaseFolder =  await fetch(appBaseFolderString, {
+      const responseBaseFolder =  await fetch(appBaseStringProject, {
          method: 'GET',
          headers: {
             'Content-Type': 'application/json',
