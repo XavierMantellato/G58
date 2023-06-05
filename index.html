@@ -125,24 +125,23 @@
 
       let entities = new Array(modelEntities.length)
 
-      modelEntities.forEach(entity => {
-
+      for (let index = 0; index < modelEntities.length; index++) {
          let entityId = entity.id
          let entityFrn = `frn:entity:${entityId}`;
 
          let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
 
-         let responseEntityPset = fetch(psetForEntityString, {
+         let responseEntityPset = await fetch(psetForEntityString, {
          method: 'GET',
          headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
          }
-         }).then((response) => {
-            entities.push(response.json());
-         });
-
       });
+         
+         entities.push(await responseEntityPset.json());
+
+   }
 
       console.log("entities", entities);
 
