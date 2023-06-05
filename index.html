@@ -208,19 +208,19 @@
 
      const defId = firstLibDef.id;
 
-     const getEntityPsetByDefIdString = psetForEntityString.concat(`/${libId}/${defId}`);
+   //   const getEntityPsetByDefIdString = psetForEntityString.concat(`/${libId}/${defId}`);
 
-     const responseEntityPsetByDefId = await fetch(getEntityPsetByDefIdString, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }
-     });
+   //   const responseEntityPsetByDefId = await fetch(getEntityPsetByDefIdString, {
+   //      method: 'GET',
+   //      headers: {
+   //          'Content-Type': 'application/json',
+   //          'Authorization': `Bearer ${accessToken}`
+   //      }
+   //   });
 
-     let entityPsetByDefId = await responseEntityPsetByDefId.json();
+   //   let entityPsetByDefId = await responseEntityPsetByDefId.json();
 
-     console.log("entityPsetByDefId", entityPsetByDefId);
+   //   console.log("entityPsetByDefId", entityPsetByDefId);
 
       var header = {
                'Content-Type': 'application/json charset=UTF-8',
@@ -238,23 +238,23 @@
       
          console.log("test body: ", testBody);
 
-     const responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
-        method: 'PATCH',
-        body: JSON.stringify({
-               "props": 
-                  {
-                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "Salut c'est moi"
-                  }
-         }),
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        },
-     });
+   //   const responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
+   //      method: 'PATCH',
+   //      body: JSON.stringify({
+   //             "props": 
+   //                {
+   //                   "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "Salut c'est moi"
+   //                }
+   //       }),
+   //      headers: {
+   //          'Content-Type': 'application/json',
+   //          'Authorization': `Bearer ${accessToken}`
+   //      },
+   //   });
 
-     let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
+   //   let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
 
-     console.log("patched entity pSet: ", entityPsetPatch);
+   //   console.log("patched entity pSet: ", entityPsetPatch);
      
      const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
 
