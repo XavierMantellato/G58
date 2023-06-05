@@ -5,7 +5,7 @@
 	
 	<script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
    <script src="./Models/Project.ts"></script>
-   <script type="module">import {psetGetRequest} from "./API_Rests/PsetsRequests.ts"</script>
+   <script type="module">import {psetGetRequest} from "./API_Rests/PsetsRequests.ts";</script>
 	
 	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
@@ -85,10 +85,20 @@
          }
       });
 
-      let rootFolderInfo = await responseFolderInfo.json()
+      let rootFolderItems = await responseFolderInfo.json()
 
-      console.log("root folder items: ", rootFolderInfo);
+      console.log("root folder items: ", rootFolderItems);
+
+      var targetedFolder;
       
+      rootFolderItems.forEach(folder => {
+         if (folder.name == "ListeProperties"){
+            targetedFolder = folder
+         }
+      });
+
+      console.log("targetedFolder: ", targetedFolder);
+
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
       
