@@ -4,7 +4,8 @@
 	<title>My JavaScript Project</title>
 	
 	<script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
-   <script src="./Models/Project.js"></script>
+   <script src="./Models/Project.ts"></script>
+   <script src="./API Rests/PsetsRequests.ts"></script>
 	
 	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
@@ -85,6 +86,8 @@
       });
 
       let rootFolderInfo = await responseFolderInfo.json()
+
+      console.log("root folder info: ", rootFolderInfo);
       
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
@@ -162,6 +165,10 @@
      });
 
      console.log("get library:", await responseLib.json());
+
+     let responseApiRestTest = await PsetGetRequest(`libs/${libId}`, accessToken);
+
+     console.log("Api Rest Test: ", responseApiRestTest.json());
 
      const responseLibDefs = await fetch(getLibDefsString, {
         method: 'GET',
