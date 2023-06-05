@@ -142,7 +142,7 @@
       console.log("num: ", modelEntities.length);
 
       for (let index = 0; index < modelEntities.length; index++) {
-         let entityId = modelEntities.id
+         let entityId = modelEntities[index].id
          let entityFrn = `frn:entity:${entityId}`;
 
          let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
@@ -154,7 +154,7 @@
             'Authorization': `Bearer ${accessToken}`
          }
       });
-      
+
          entities.push(await responseEntityPset.json());
          console.log("entity added: ", responseEntityPset);
    };
