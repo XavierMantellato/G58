@@ -18,6 +18,18 @@
          onclick="getData()">Refresh</button>
    </div>
 
+   <div>
+      <table>
+         <tr>
+            <th>ProjectName</th>
+            <th>ProjectId</th>
+         </tr>
+         <tr>
+            <td id="tableName"></td>
+            <td id="tableId"></td>
+         </tr>
+      </table>
+   </div>
 
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
 <script type="text/javascript">
@@ -41,6 +53,9 @@
       const responseProject = await API.project.getProject();
       console.log("Response Project: ", responseProject); // Trimble Connect project details
       const projectId = responseProject.id;
+
+      document.getElementById('tableName').innerHTML = responseProject.id;
+      document.getElementById('tableId').innerHTML = responseProject.name;
       
       const responseAccessToken = await API.extension.requestPermission("accesstoken");
       console.log("responseAccessToken: ", responseAccessToken);
@@ -181,6 +196,8 @@
 
       console.log("num: ", modelEntities.length);
 
+      var psetsValues = new Array();
+
       for (let index = 0; index < modelEntities.length; index++) {
          let entityId = modelEntities[index].id
          let entityFrn = `frn:entity:${entityId}`;
@@ -223,49 +240,39 @@
      let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
 
      console.log("patched entity pSet: ", entityPsetPatch);
+
      entities.push(entityPsetPatch);
+
      console.log("entity added: ", entityPsetPatch);
+
+     console.log("psetValue: ", entityPsetPatch.props[0].prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3);
+
+     if (!psetsValues.includes(entityPsetPatch.props[0].prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3))
+     {
+      psetsValues.push(entityPsetPatch.props[0].prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3);
+     }
+
    };
 
       console.log("entities", entities);
 
-     
-
-     
-
-      var header = {
-               'Content-Type': 'application/json charset=UTF-8',
-               'Authorization': `Bearer ${accessToken}`
-             };
-
-      console.log("header", header);
-
-      var testBody = {
-               "props": 
-                  {
-                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": 'Valeur Test Patched'
-                  }
-         };
-      
-         console.log("test body: ", testBody);
-     
-     const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
-
-      const responsePset = await fetch(getLibDefsPsetString, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }
-     });
-
      var projectInstance = new ProjectClass(responseProject.id, responseProject.name);
 
      console.log("projectInstance: ", projectInstance);
-
-     console.log("response pset: ", await responsePset.json());
      
+
+     let targetedFolderId = targetedFolder.id;
+
+     var createFolderBody = new Array()
+     psetsValues.forEach(value => {
+      createFolderBody.push(JSON.stringify({
+         "name":`${value}`,
+         "parentId":`${targetedFolderId}`
+      }))
+     });
+
     }
+
  </script>
 	
 </body>
