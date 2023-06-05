@@ -57,12 +57,26 @@
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
       // const projectForestNodeString = orgBaseString.concat(`forests`);
 
-      const appBaseStringProject = appBaseString.concat(`projects/${projectId}`);
-      const appBaseFolderString = appBaseString.concat(`folders/${projectId}`);
+      const appProjectInfoProject = appBaseString.concat(`projects/${projectId}`);
       
       console.log("debut test: ");
+      
+      const responseProjectInfo =  await fetch(appProjectInfoProject, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+      
+      let projectInfo = await responseProjectInfo.json();
+      let rootId = projectInfo.rootId;
+      
+      console.log("baseFolderId: ", rootId);
 
-      const responseBaseFolder =  await fetch(appBaseStringProject, {
+      const appBaseFolderString = appBaseString.concat(`folders/${rootId}`);
+
+      const responseFolderInfo =  await fetch(appBaseFolderString, {
          method: 'GET',
          headers: {
             'Content-Type': 'application/json',
@@ -70,9 +84,7 @@
          }
       });
 
-      let baseFolder = await responseBaseFolder.json();
-
-      console.log("baseFolder: ", baseFolder);
+      let rootFolderInfo = await responseFolderInfo.json()
       
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
