@@ -5,7 +5,7 @@
 	
 	<script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
    <script src="./Models/Project.ts"></script>
-   <script type="module">import {PsetGetRequest} from "./API Rests/PsetsRequests.ts" </script>
+   <script type="module">import {psetGetRequest} from "./API_Rests/PsetsRequests.ts"</script>
 	
 	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
@@ -166,9 +166,9 @@
 
      console.log("get library:", await responseLib.json());
 
-     let responseApiRestTest = await PsetGetRequest(`libs/${libId}`, accessToken);
+     let responseApiRestTest = await PsetGetRequest(`libs/${libId}`, accessToken).json();
 
-     console.log("Api Rest Test: ", responseApiRestTest.json());
+     console.log("Api Rest Test: ", responseApiRestTest);
 
      const responseLibDefs = await fetch(getLibDefsString, {
         method: 'GET',
