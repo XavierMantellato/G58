@@ -120,6 +120,20 @@
       let modelInfos = await responseModelInfo.json();
 
       let modelEntities = modelInfos.items;
+      
+      let entityFrnTest = `frn:entity:${modelEntities[0].id}`;
+
+      let psetForEntityTestString = psetBaseString.concat(`psets/${entityFrnTest}`);
+
+      let responseEntityPsetTest = await fetch(psetForEntityString, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+
+      console.log("test PsetsRequests: ", await responseEntityPsetTest.json());
 
       console.log("model entites: ", modelEntities)
 
