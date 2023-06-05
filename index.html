@@ -140,7 +140,7 @@
       let entities = new Array(modelEntities.length)
 
       for (let index = 0; index < modelEntities.length; index++) {
-         let entityId = entity.id
+         let entityId = modelEntities.id
          let entityFrn = `frn:entity:${entityId}`;
 
          let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
