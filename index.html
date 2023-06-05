@@ -107,7 +107,7 @@
 
       document.getElementById('test').innerHTML = model.name;
 
-      const modelInfoString = modelApiBaseString.concat(`models/${model.id}/entities`)
+      const modelInfoString = modelApiBaseString.concat(`models/${model.id}/entities`);
       
       const responseModelInfo =  await fetch(modelInfoString, {
          method: 'GET',
@@ -119,17 +119,37 @@
 
       let modelInfos = await responseModelInfo.json();
 
-      console.log("modelEntities:", modelInfos);
+      let modelEntities = model.items;
 
-      let entityId = modelInfos.items[349].id;
+      let entities = new Array(model.length())
 
-      document.getElementById('entityId').innerHTML = entityId;
+      modelEntities.forEach(entity => {
 
-      console.log(entityId);
+         let entityId = entity.id
+         let entityFrn = `frn:entity:${entityId}`;
 
-      let entityFrn = `frn:entity:${entityId}`;
+         let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
 
-      console.log("entity frn: ", entityFrn)
+         let responseEntityPset = fetch(psetForEntityString, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+         }).then((response) => {
+            entities.push(response.json());
+         });
+
+      });
+
+      console.log("entities", entities);
+
+      // document.getElementById('entityId').innerHTML = entityId;
+
+      // console.log(entityId);
+
+
+      // console.log("entity frn: ", entityFrn)
 
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
@@ -139,23 +159,11 @@
         }
      });
 
-     let encodedEntityFrn = encodeURIComponent(entityFrn);
+   //   let encodedEntityFrn = encodeURIComponent(entityFrn);
 
-     console.log("encoded entity frn: ", encodedEntityFrn);
+   //   console.log("encoded entity frn: ", encodedEntityFrn);
 
-     let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
-
-     let responseEntityPset = await fetch(psetForEntityString, {
-         method: 'GET',
-         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-         }
-     });
-
-     let entityPset = await responseEntityPset.json();
-
-     console.log("entity Pset: ", entityPset);
+     
 
      const responseForestJson = await responseForest.json();
      const libId = responseForestJson.links[0].substring(8);
