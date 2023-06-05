@@ -176,9 +176,9 @@
 
      console.log("get library:", await responseLib.json());
 
-     let responseApiRestTest = await PsetGetRequest(`libs/${libId}`, accessToken).json();
+   //   let responseApiRestTest = await PsetGetRequest(`libs/${libId}`, accessToken).json();
 
-     console.log("Api Rest Test: ", responseApiRestTest);
+   //   console.log("Api Rest Test: ", responseApiRestTest);
 
      const responseLibDefs = await fetch(getLibDefsString, {
         method: 'GET',
