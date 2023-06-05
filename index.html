@@ -147,16 +147,46 @@
 
          let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
 
-         let responseEntityPset = await fetch(psetForEntityString, {
-         method: 'GET',
-         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-         }
-      });
+         // entities.push(await responseEntityPset.json());
 
-         entities.push(await responseEntityPset.json());
-         console.log("entity added: ", responseEntityPset);
+         const getEntityPsetByDefIdString = psetForEntityString.concat(`/${libId}/${defId}`);
+
+         if (index < 500){
+
+            var responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
+               method: 'PATCH',
+               body: JSON.stringify({
+                  "props": 
+                  {
+                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "A1"
+                  }
+               }),
+               headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${accessToken}`
+               },
+            });
+         }else{
+             responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
+               method: 'PATCH',
+               body: JSON.stringify({
+                  "props": 
+                  {
+                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "A2"
+                  }
+               }),
+               headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${accessToken}`
+               },
+            });
+         }
+
+     let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
+
+     console.log("patched entity pSet: ", entityPsetPatch);
+     entities.push(entityPsetPatch);
+     console.log("entity added: ", entityPsetPatch);
    };
 
       console.log("entities", entities);
@@ -283,7 +313,7 @@
 
      var projectInstance = new ProjectClass(responseProject.id, responseProject.name);
 
-     console.log("projectInstance: ",projectInstance);
+     console.log("projectInstance: ", projectInstance);
 
      console.log("response pset: ", await responsePset.json());
      
