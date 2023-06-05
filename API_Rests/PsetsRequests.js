@@ -1,6 +1,6 @@
 const baseUrl = 'https://pset-api.connect.trimble.com/v1/';
 
-export async function psetGetRequest(endpointUrl: string, accessToken: string)
+export async function psetGetRequest(endpointUrl, accessToken)
 {
     const result = await fetch(baseUrl.concat(endpointUrl), {
         method: 'GET',
