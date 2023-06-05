@@ -166,7 +166,7 @@
 
      console.log("get library:", await responseLib.json());
 
-     let responseApiRestTest = await PsetGetRequest(`libs/${libId}`, accessToken);
+     let responseApiRestTest = await PsetsRequests.PsetGetRequest(`libs/${libId}`, accessToken);
 
      console.log("Api Rest Test: ", responseApiRestTest.json());
 
