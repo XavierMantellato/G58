@@ -229,6 +229,7 @@
                   {
                      "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "A2"
                   }
+                  
                }),
                headers: {
                   'Content-Type': 'application/json',
@@ -263,15 +264,23 @@
 
      let targetedFolderId = targetedFolder.id;
 
-     var createFolderBody = new Array()
-     psetsValues.forEach(value => {
-      createFolderBody.push(JSON.stringify({
-         "name":`${value}`,
-         "parentId":`${targetedFolderId}`
-      }))
-     });
+     for (let index = 0; index < psetsValues.length; index++) {
+      let value = psetsValues[index];
 
-    }
+      var responseCreateFolder = await fetch(appBaseString.concat("folders"), {
+         method:"POST",
+         body: JSON.stringify({
+            "name":`${value}`,
+            "parentId":`${targetedFolderId}`
+         }),
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+   };
+
+}
 
  </script>
 	
