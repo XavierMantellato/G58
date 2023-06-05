@@ -10,14 +10,16 @@
 	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
 <body>
-   <p>
+   <div style="text-align: center;">
       <h3>Selected Model</h3>
       <div id="test"></div>
-      <h4>Selected entity id</h4>
-      <div id="entityId"></div>
-   </p>
-<!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
+      <button 
+         id="btnRefresh"
+         onclick="getData()">Refresh</button>
+   </div>
 
+
+<!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
 <script type="text/javascript">
 
    xdomain.slaves({
@@ -30,8 +32,6 @@
 
     async function getData() {
 
-      var selection;
-
      const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
         console.log("Event: ", event, data);
       });
@@ -41,10 +41,6 @@
       const responseProject = await API.project.getProject();
       console.log("Response Project: ", responseProject); // Trimble Connect project details
       const projectId = responseProject.id;
-
-      // const projectInstance = new ProjectClass(responseProject.id, responseProject.name);
-
-      // console.log("Project instance:", projectInstance);
       
       const responseAccessToken = await API.extension.requestPermission("accesstoken");
       console.log("responseAccessToken: ", responseAccessToken);
@@ -56,7 +52,6 @@
       const modelApiBaseString = "https://model-api21.connect.trimble.com/"
       
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
-      // const projectForestNodeString = orgBaseString.concat(`forests`);
 
       const appProjectInfoProject = appBaseString.concat(`projects/${projectId}`);
       
@@ -147,8 +142,6 @@
 
          let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
 
-         // entities.push(await responseEntityPset.json());
-
          const getEntityPsetByDefIdString = psetForEntityString.concat(`/${libId}/${defId}`);
 
          if (index < 500){
@@ -191,13 +184,6 @@
 
       console.log("entities", entities);
 
-      // document.getElementById('entityId').innerHTML = entityId;
-
-      // console.log(entityId);
-
-
-      // console.log("entity frn: ", entityFrn)
-
      const responseForest = await fetch(projectForestString, {
         method: 'GET',
         headers: {
@@ -205,12 +191,6 @@
             'Authorization': `Bearer ${accessToken}`
         }
      });
-
-   //   let encodedEntityFrn = encodeURIComponent(entityFrn);
-
-   //   console.log("encoded entity frn: ", encodedEntityFrn);
-
-     
 
      const responseForestJson = await responseForest.json();
      const libId = responseForestJson.links[0].substring(8);
@@ -231,10 +211,6 @@
 
      console.log("get library:", await responseLib.json());
 
-   //   let responseApiRestTest = await PsetGetRequest(`libs/${libId}`, accessToken).json();
-
-   //   console.log("Api Rest Test: ", responseApiRestTest);
-
      const responseLibDefs = await fetch(getLibDefsString, {
         method: 'GET',
         headers: {
@@ -253,20 +229,6 @@
 
      const defId = firstLibDef.id;
 
-   //   const getEntityPsetByDefIdString = psetForEntityString.concat(`/${libId}/${defId}`);
-
-   //   const responseEntityPsetByDefId = await fetch(getEntityPsetByDefIdString, {
-   //      method: 'GET',
-   //      headers: {
-   //          'Content-Type': 'application/json',
-   //          'Authorization': `Bearer ${accessToken}`
-   //      }
-   //   });
-
-   //   let entityPsetByDefId = await responseEntityPsetByDefId.json();
-
-   //   console.log("entityPsetByDefId", entityPsetByDefId);
-
       var header = {
                'Content-Type': 'application/json charset=UTF-8',
                'Authorization': `Bearer ${accessToken}`
@@ -282,24 +244,6 @@
          };
       
          console.log("test body: ", testBody);
-
-   //   const responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
-   //      method: 'PATCH',
-   //      body: JSON.stringify({
-   //             "props": 
-   //                {
-   //                   "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "Salut c'est moi"
-   //                }
-   //       }),
-   //      headers: {
-   //          'Content-Type': 'application/json',
-   //          'Authorization': `Bearer ${accessToken}`
-   //      },
-   //   });
-
-   //   let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
-
-   //   console.log("patched entity pSet: ", entityPsetPatch);
      
      const getLibDefsPsetString = `${getLibDefsString}/${defId}/psets`;
 
