@@ -39,10 +39,16 @@
     "https://org-api.connect.trimble.com": "/v1/proxy.html"
   });
     console.log("Test log");
+
+      const psetBaseString = 'https://pset-api.connect.trimble.com/v1/';
+      const orgBaseString = "https://org-api.connect.trimble.com/v1/";
+      const appBaseString = "https://app21.connect.trimble.com/tc/api/2.0/";
+      const modelApiBaseString = "https://model-api21.connect.trimble.com/";
     	
     getData();
 
-    async function getData() {
+    async function getData() 
+    {
 
      const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
         console.log("Event: ", event, data);
@@ -60,11 +66,6 @@
       const responseAccessToken = await API.extension.requestPermission("accesstoken");
       console.log("responseAccessToken: ", responseAccessToken);
       const accessToken = responseAccessToken;
-      
-      const psetBaseString = 'https://pset-api.connect.trimble.com/v1/';
-      const orgBaseString = "https://org-api.connect.trimble.com/v1/";
-      const appBaseString = "https://app21.connect.trimble.com/tc/api/2.0/";
-      const modelApiBaseString = "https://model-api21.connect.trimble.com/"
       
       const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
 
@@ -297,7 +298,10 @@
    // };
 
 }
+    async function createFolderHierarchy()
+    {
 
+    }
  </script>
 	
 </body>
