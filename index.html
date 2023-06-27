@@ -268,6 +268,8 @@
      for (let index = 0; index < psetsValues.length; index++) {
       let value = psetsValues[index];
 
+      console.log("responseCreateFolder:", appBaseString.concat("folders"));
+
       var responseCreateFolder = await fetch(appBaseString.concat("folders"), {
          method:"POST",
          body: JSON.stringify({
