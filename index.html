@@ -176,6 +176,8 @@
       let modelInfos = await responseModelInfo.json();
 
       let modelEntities = modelInfos.items;
+
+      console.log("modelEntities: ", modelEntities);
       
       let entityFrnTest = `frn:entity:${modelEntities[0].id}`;
 
