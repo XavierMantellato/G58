@@ -206,70 +206,68 @@
 
       console.log("test PsetsRequests: ", await responseEntityPsetTest.json());
 
-      console.log("model entities: ", modelEntities)
-
       let entities = new Array();
 
       console.log("num: ", modelEntities.length);
 
       var psetsValues = new Array();
 
-      for (let index = 0; index < modelEntities.length; index++) {
-         let entityId = modelEntities[index].id
-         let entityFrn = `frn:entity:${entityId}`;
+   //    for (let index = 0; index < modelEntities.length; index++) {
+   //       let entityId = modelEntities[index].id
+   //       let entityFrn = `frn:entity:${entityId}`;
 
-         let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
+   //       let psetForEntityString = psetBaseString.concat(`psets/${entityFrn}`);
 
-         const getEntityPsetByDefIdString = psetForEntityString.concat(`/${libId}/${defId}`);
+   //       const getEntityPsetByDefIdString = psetForEntityString.concat(`/${libId}/${defId}`);
 
-         if (index < 500){
+   //       if (index < 500){
 
-            var responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
-               method: 'PATCH',
-               body: JSON.stringify({
-                  "props": 
-                  {
-                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "A1"
-                  }
-               }),
-               headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${accessToken}`
-               },
-            });
-         }else{
-             responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
-               method: 'PATCH',
-               body: JSON.stringify({
-                  "props": 
-                  {
-                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "A2"
-                  }
+   //          var responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
+   //             method: 'PATCH',
+   //             body: JSON.stringify({
+   //                "props": 
+   //                {
+   //                   "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "A1"
+   //                }
+   //             }),
+   //             headers: {
+   //                'Content-Type': 'application/json',
+   //                'Authorization': `Bearer ${accessToken}`
+   //             },
+   //          });
+   //       }else{
+   //           responseEntityPsetByDefIdPatch = await fetch(getEntityPsetByDefIdString, {
+   //             method: 'PATCH',
+   //             body: JSON.stringify({
+   //                "props": 
+   //                {
+   //                   "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "A2"
+   //                }
                   
-               }),
-               headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${accessToken}`
-               },
-            });
-         }
+   //             }),
+   //             headers: {
+   //                'Content-Type': 'application/json',
+   //                'Authorization': `Bearer ${accessToken}`
+   //             },
+   //          });
+   //       }
 
-     let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
+   //   let entityPsetPatch = await responseEntityPsetByDefIdPatch.json();
 
-     console.log("patched entity pSet: ", entityPsetPatch);
+   //   console.log("patched entity pSet: ", entityPsetPatch);
 
-     entities.push(entityPsetPatch);
+   //   entities.push(entityPsetPatch);
 
-     console.log("entity added: ", entityPsetPatch);
+   //   console.log("entity added: ", entityPsetPatch);
 
-     console.log("psetValue: ", entityPsetPatch.props);
+   //   console.log("psetValue: ", entityPsetPatch.props);
 
-     if (!psetsValues.includes(entityPsetPatch.props))
-     {
-      psetsValues.push(entityPsetPatch.props);
-     }
+   //   if (!psetsValues.includes(entityPsetPatch.props))
+   //   {
+   //    psetsValues.push(entityPsetPatch.props);
+   //   }
 
-   };
+   // };
 
       console.log("entities", entities);
 
