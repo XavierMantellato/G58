@@ -214,7 +214,7 @@
                body: JSON.stringify({
                   "props": 
                   {
-                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "https://www.arkance-systems.fr/"
+                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "A1"
                   }
                }),
                headers: {
@@ -228,7 +228,7 @@
                body: JSON.stringify({
                   "props": 
                   {
-                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "https://www.arkance-systems.fr/"
+                     "prop_fn1lmx6z7qwngdy1g7qubrlvmub416h3": "A2"
                   }
                   
                }),
@@ -264,24 +264,24 @@
      
 
      let targetedFolderId = targetedFolder.id;
+     console.log("responseCreateFolder:", appBaseString.concat("folders"));
 
-     for (let index = 0; index < psetsValues.length; index++) {
-      let value = psetsValues[index];
+   //   for (let index = 0; index < psetsValues.length; index++) {
+   //    let value = psetsValues[index];
 
-      console.log("responseCreateFolder:", appBaseString.concat("folders"));
 
-      var responseCreateFolder = await fetch(appBaseString.concat("folders"), {
-         method:"POST",
-         body: JSON.stringify({
-            "name":`${value}`,
-            "parentId":`${targetedFolderId}`
-         }),
-         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-         }
-      });
-   };
+   //    var responseCreateFolder = await fetch(appBaseString.concat("folders"), {
+   //       method:"POST",
+   //       body: JSON.stringify({
+   //          "name":`${value}`,
+   //          "parentId":`${targetedFolderId}`
+   //       }),
+   //       headers: {
+   //          'Content-Type': 'application/json',
+   //          'Authorization': `Bearer ${accessToken}`
+   //       }
+   //    });
+   // };
 
 }
 
