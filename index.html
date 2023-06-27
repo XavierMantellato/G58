@@ -253,6 +253,22 @@
 
       console.log("num: ", modelEntities.length);
 
+      var entityId = modelEntities[655].id;
+
+      var entityInfoString = modelInfoString.concat(`/${entityId}`);
+
+      const responseEntityIbfo = await fetch(entityInfoString, {
+        method: 'GET',
+        headers: {
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${accessToken}`
+         }
+      });
+
+      const entityInfoJson = await responseEntityIbfo.json();
+
+      console.log("entity infos: ", entityInfoJson)
+
       var psetsValues = new Array();
 
    //    for (let index = 0; index < modelEntities.length; index++) {
