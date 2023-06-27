@@ -172,9 +172,13 @@
       console.log("ProjectContext:", ProjectContextJson);
       //#endregion      
 
-     const getLibString = `${psetBaseString}libs/${libId}`;
+      //Create Library string for request
+      const getLibString = `${psetBaseString}libs/${libId}`;
+
+      //Create LibraryDefinition string for request
      const getLibDefsString = `${getLibString}/defs`;
 
+     //#region Get Library
      const responseLib = await fetch(getLibString, {
         method: 'GET',
         headers: {
@@ -184,7 +188,9 @@
      });
 
      console.log("get library:", await responseLib.json());
+     //#endregion
 
+     //#region Get Library Def
      const responseLibDefs = await fetch(getLibDefsString, {
         method: 'GET',
         headers: {
@@ -197,12 +203,17 @@
 
      console.log("library definitions: ", LibDefs);
 
+     //#endregion
+
+     // Display first library definition
      const firstLibDef = LibDefs.items[0];
 
      console.log("get first library def:", firstLibDef);
 
      const defId = firstLibDef.id;
 
+     //#region Get model Entities
+     // Create request to get model entities
       const modelInfoString = modelApiBaseString.concat(`models/${model.id}/entities`);
       
       const responseModelInfo =  await fetch(modelInfoString, {
@@ -219,6 +230,10 @@
 
       console.log("modelEntities: ", modelEntities);
       
+      //#endregion
+
+      //#region PsetRequest test
+      // Create frn link for first entity
       let entityFrnTest = `frn:entity:${modelEntities[0].id}`;
 
       let psetForEntityTestString = psetBaseString.concat(`psets/${entityFrnTest}`);
@@ -232,6 +247,7 @@
       });
 
       console.log("test PsetsRequests: ", await responseEntityPsetTest.json());
+      //#endregion
 
       let entities = new Array();
 
