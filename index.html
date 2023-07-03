@@ -258,7 +258,9 @@
 
       var entityInfoString = modelInfoString.concat(`/${entityId}`);
 
-      var params = "include=id,idx,psets,psets.name,boundingBox,product,hierarchyInfo,layerIds";
+      var params = "include=id,idx,psets,psets.name";
+
+      var entityInfo = await GetRequest(entityInfoString, params).json();
 
       const responseEntityIbfo = await fetch(entityInfoString + '?' + new URLSearchParams(params), {
         method: 'GET',
@@ -270,7 +272,8 @@
 
       const entityInfoJson = await responseEntityIbfo.json();
 
-      console.log("entity infos: ", entityInfoJson)
+      console.log("entity infos json: ", entityInfoJson);
+      console.log("entity infos: ", entityInfoJson);
 
       var psetsValues = new Array();
 
