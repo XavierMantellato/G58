@@ -258,23 +258,16 @@
 
       var entityInfoString = modelInfoString.concat(`/${entityId}`);
 
-      const responseEntityIbfo = await fetch(entityInfoString, {
+      var params = "?include=id,idx,psets,psets.name,boundingBox,product,hierarchyInfo,layerIds";
+
+      const responseEntityIbfo = await fetch(entityInfoString  + new URLSearchParams(params), {
         method: 'GET',
-        include: [
-         "id",
-         "idx",
-         "psets",
-         "psets.name",
-         "boundingBox",
-         "product",
-         "hierarchyInfo",
-         "layerIds",
-        ],
         headers: {
            'Content-Type': 'application/json',
            'Authorization': `Bearer ${accessToken}`
          }
       });
+
 
       const entityInfoJson = await responseEntityIbfo.json();
 
