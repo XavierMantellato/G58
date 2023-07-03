@@ -1,7 +1,7 @@
 async function GetRequest(url, headers, params) {
     var request = url;
     if (params != ""){
-        request = request.concat('?' + URLSearchParams(params))
+        request = request.concat('?' + new URLSearchParams(params))
     }
     const response = await fetch(request, {
         method: "GET",
