@@ -1,6 +1,6 @@
 async function GetRequest(url, headers, params) {
     var request = url;
-    if (params != null){
+    if (params != ""){
         request = request.concat('?' + URLSearchParams(params))
     }
     const response = await fetch(request, {
