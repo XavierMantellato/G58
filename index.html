@@ -280,9 +280,15 @@
 
       console.log("pset: ", pset);
 
-      // console.log("entity infos: ", entityInfo);
+      var stringToSplit = new String(pset[0]);
 
-      var psetsValues = new Array();
+      var splitedString = new Array();
+
+      splitedString = stringToSplit.split('-');
+
+      console.log("splitedString: ", splitedString);
+
+      // console.log("entity infos: ", entityInfo);
 
    //    for (let index = 0; index < modelEntities.length; index++) {
    //       let entityId = modelEntities[index].id
