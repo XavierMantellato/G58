@@ -62,6 +62,11 @@
       const appProjectInfoProject = appBaseString.concat(`projects/${projectId}`);
       
       console.log("debut test: ");
+
+      const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
       
       const responseProjectInfo =  await fetch(appProjectInfoProject, {
          method: 'GET',
@@ -247,7 +252,7 @@
 
       var params = "include=id,idx,psets,psets.name";
 
-      var entityInfo = await GetRequest(entityInfoString, params).json();
+      var entityInfo = await GetRequest(entityInfoString, headers, params).json();
 
       const responseEntityIbfo = await fetch(entityInfoString + '?' + new URLSearchParams(params), {
         method: 'GET',
