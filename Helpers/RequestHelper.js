@@ -1,4 +1,4 @@
-async function GetRequest(url, headers, params) {
+export async function GetRequest(url, headers, params) {
     var request = url;
     if (params != ""){
         request = request.concat('?' + new URLSearchParams(params))
