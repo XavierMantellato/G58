@@ -260,14 +260,13 @@
 
       var params = "include=id,idx,psets,psets.name,boundingBox,product,hierarchyInfo,layerIds";
 
-      const responseEntityIbfo = await fetch(entityInfoString + "?" + new URLSearchParams(params), {
+      const responseEntityIbfo = await fetch(entityInfoString + '?' + new URLSearchParams(params), {
         method: 'GET',
         headers: {
            'Content-Type': 'application/json',
            'Authorization': `Bearer ${accessToken}`
          }
       });
-
 
       const entityInfoJson = await responseEntityIbfo.json();
 
