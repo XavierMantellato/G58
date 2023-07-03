@@ -7,6 +7,7 @@
 	<script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
    <script src="./ModelsJs/Project.js"></script>
    <script src="./ModelsJs/API_Rests/PsetsRequests.js"></script>
+   <script src="./Helpers/RequestHelper.js"></script>
 	
 	<script src="https://unpkg.com/xdomain@0.8.2/dist/xdomain.min.js"></script>
 </head>
@@ -259,18 +260,18 @@
 
       const responseEntityIbfo = await fetch(entityInfoString, {
         method: 'GET',
-        include: JSON.stringify(
-         [
-            "id",
-            "idx",
-            "psets",
-            "psets.name",
-            "boundingBox",
-            "product",
-            "hierarchyInfo",
-            "layerIds",
-         ]
-        ),
+        include: {
+         id,
+         idx,
+         type,
+         product: {
+            name,
+            description,
+            objectType,
+            ownerIdx,
+            historyIdx
+         }
+        },
         headers: {
            'Content-Type': 'application/json',
            'Authorization': `Bearer ${accessToken}`
