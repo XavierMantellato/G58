@@ -260,18 +260,16 @@
 
       const responseEntityIbfo = await fetch(entityInfoString, {
         method: 'GET',
-        include: {
-         id,
-         idx,
-         type,
-         product: {
-            name,
-            description,
-            objectType,
-            ownerIdx,
-            historyIdx
-         }
-        },
+        include: [
+         "id",
+         "idx",
+         "psets",
+         "psets.name",
+         "boundingBox",
+         "product",
+         "hierarchyInfo",
+         "layerIds",
+        ],
         headers: {
            'Content-Type': 'application/json',
            'Authorization': `Bearer ${accessToken}`
