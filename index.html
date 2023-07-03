@@ -263,6 +263,23 @@
       const entityInfoJson = await responseEntityIbfo.json();
 
       console.log("entity infos json: ", entityInfoJson);
+
+      var psetsArray = new Array();
+      
+      psetsArray = entityInfoJson.psets;
+
+      console.log("psetsArray: ", psetsArray);
+
+      var pset;
+
+      psetsArray.forEach(object => {
+         if (object.name == 'Project_Identitfication'){
+            pset = object;
+         }
+      });
+
+      console.log("pset: ", pset);
+
       // console.log("entity infos: ", entityInfo);
 
       var psetsValues = new Array();
