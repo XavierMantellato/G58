@@ -228,7 +228,7 @@
 
       let modelEntities = modelInfos.items;
 
-      console.log("modelEntities: ", modelEntities);
+      // console.log("modelEntities: ", modelEntities);
       
       //#endregion
 
@@ -259,7 +259,7 @@
 
       const responseEntityIbfo = await fetch(entityInfoString, {
         method: 'GET',
-        body: JSON.stringify(
+        include: JSON.stringify(
          [
             "id",
             "idx",
