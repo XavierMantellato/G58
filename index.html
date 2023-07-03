@@ -46,9 +46,6 @@
       console.log("Response Project: ", responseProject); // Trimble Connect project details
       const projectId = responseProject.id;
 
-      document.getElementById('tableName').innerHTML = responseProject.name;
-      document.getElementById('tableId').innerHTML = responseProject.id;
-      
       const responseAccessToken = await API.extension.requestPermission("accesstoken");
       console.log("responseAccessToken: ", responseAccessToken);
       const accessToken = responseAccessToken;
