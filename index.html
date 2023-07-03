@@ -252,6 +252,10 @@
 
       var params = "include=id,idx,psets,psets.name";
 
+      console.log("test GetRequest");
+      console.log("entityinfosstring:",entityInfoString);
+      console.log("headers:",headers);
+      console.log("params:",params);
       var entityInfo = await GetRequest(entityInfoString, headers, params).json();
 
       const responseEntityIbfo = await fetch(entityInfoString + '?' + new URLSearchParams(params), {
