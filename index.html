@@ -29,18 +29,19 @@
       const orgBaseString = "https://org-api.connect.trimble.com/v1/";
       const appBaseString = "https://app21.connect.trimble.com/tc/api/2.0/";
       const modelApiBaseString = "https://model-api21.connect.trimble.com/";
-    	
-    getData();
 
-    async function getData() 
-    {
+      const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
 
-     const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
+      const projectForestTreesString = orgBaseString.concat(`forests/project:${projectId}:data/trees`);
+
+      const appProjectInfoProject = appBaseString.concat(`projects/${projectId}`);
+
+      console.log("Api:");
+
+      const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
         console.log("Event: ", event, data);
       });
-      
-      console.log("Window Parent: ", window.parent);
-      
+
       const responseProject = await API.project.getProject();
       console.log("Response Project: ", responseProject); // Trimble Connect project details
       const projectId = responseProject.id;
@@ -48,27 +49,19 @@
       const responseAccessToken = await API.extension.requestPermission("accesstoken");
       console.log("responseAccessToken: ", responseAccessToken);
       const accessToken = responseAccessToken;
-      
-      const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
-
-      const projectForestTreesString = orgBaseString.concat(`forests/project:${projectId}:data/trees`);
-
-      const appProjectInfoProject = appBaseString.concat(`projects/${projectId}`);
-      
-      console.log("debut test: ");
-
+    	
       var headers = {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
          }
-      
-      const responseProjectInfo =  await fetch(appProjectInfoProject, {
-         method: 'GET',
-         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-         }
-      });
+
+      console.log("endApi:")
+
+    getData();
+
+    async function getData() 
+    {
+      console.log("debut test: ");
       
       let projectInfo = await responseProjectInfo.json();
       var rootId = projectInfo.rootId;
@@ -329,8 +322,18 @@
    // };
 
    }
-    async function createFolderHierarchy()
+    async function createFolderHierarchy(rootId)
     {
+      const responseProjectInfo =  await fetch(appProjectInfoProject, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+
+      console.log("creating folder:");
+
       const appBaseFolderString = appBaseString.concat(`folders/${rootId}/items`);
 
       const responseFolderInfo =  await fetch(appBaseFolderString, {
