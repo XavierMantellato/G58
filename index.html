@@ -89,15 +89,7 @@
 
       console.log("root folder items: ", rootFolderItems);
 
-      var targetedFolder;
       
-      rootFolderItems.forEach(folder => {
-         if (folder.name == "ListeProperties"){
-            targetedFolder = folder
-         }
-      });
-
-      console.log("targetedFolder: ", targetedFolder);
 
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
@@ -280,16 +272,6 @@
 
       console.log("pset: ", pset);
 
-      var stringToSplit = `${pset.values[0]}`;
-
-      console.log("stringToSplit: ", stringToSplit);
-
-      var splitedString = new Array();
-
-      splitedString = stringToSplit.split('-');
-
-      console.log("splitedString: ", splitedString);
-
       // console.log("entity infos: ", entityInfo);
 
    //    for (let index = 0; index < modelEntities.length; index++) {
@@ -355,19 +337,44 @@
 
      console.log("projectInstance: ", projectInstance);
 
-     let targetedFolderId = targetedFolder.id;
 
      console.log("responseCreateFolder:", appBaseString.concat("folders"));
 
    //   for (let index = 0; index < psetsValues.length; index++) {
    //    let value = psetsValues[index];
+   // };
 
-      var value = splitedString[0];
+   }
+    async function createFolderHierarchy()
+    {
+      var targetedFolder;
+      
+      rootFolderItems.forEach(folder => {
+         if (folder.name == "ListeProperties"){
+            targetedFolder = folder
+         }
+      });
 
-   console.log("request body: ", JSON.stringify({
+      console.log("targetedFolder: ", targetedFolder);
+
+      var stringToSplit = `${pset.values[0]}`;
+
+      console.log("stringToSplit: ", stringToSplit);
+
+      var splitedString = new Array();
+
+      splitedString = stringToSplit.split('-');
+
+      console.log("splitedString: ", splitedString);
+
+      var targetedFolderId = targetedFolder.id;
+
+      console.log("request body: ", JSON.stringify({
             "name":`${value}`,
             "parentId":`${targetedFolderId}`
          }));
+
+      var value = splitedString[0];
 
       var responseCreateFolder = await fetch(appBaseString.concat("folders"), {
          method:"POST",
@@ -382,12 +389,6 @@
       });
 
       console.log("responseFolderCreation: ", await responseCreateFolder.json());
-   // };
-
-}
-    async function createFolderHierarchy()
-    {
-
     }
  </script>
 	
