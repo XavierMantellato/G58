@@ -421,7 +421,8 @@
             let responseCreation = null;
             if (responseCreation.errorcode == "DUPLICATE_NAME" && responseCreation)
             {
-               responseCreation = createFolder(string, targetedFolderId, accessToken)
+               responseCreation = createFolder(string, targetedFolderId, accessToken);
+               console.log("response creation folder: ", responseCreation)
             }
          })
 
@@ -429,7 +430,6 @@
       let responseCreation = await responseCreateFolder.json();
 
       console.log("responseFolderCreation: ", responseCreation);
-
     }
 
     async function createFolder(name, parentId, acccessToken)
