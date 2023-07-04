@@ -55,8 +55,6 @@
 
       const appProjectInfoProject = appBaseString.concat(`projects/${projectId}`);
 
-      
-
       const responseProjectInfo =  await fetch(appProjectInfoProject, {
          method: 'GET',
          headers: {
@@ -332,7 +330,7 @@
    // };
 
    }
-    async function createFolderHierarchy(rootId)
+    async function createFolderHierarchy()
     {
       const responseProjectInfo =  await fetch(appProjectInfoProject, {
          method: 'GET',
