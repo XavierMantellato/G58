@@ -71,19 +71,9 @@
       });
       
       let projectInfo = await responseProjectInfo.json();
-      let rootId = projectInfo.rootId;
+      const rootId = projectInfo.rootId;
       
       console.log("baseFolderId: ", rootId);
-
-      const appBaseFolderString = appBaseString.concat(`folders/${rootId}/items`);
-
-      const responseFolderInfo =  await fetch(appBaseFolderString, {
-         method: 'GET',
-         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-         }
-      });
 
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
@@ -341,6 +331,16 @@
    }
     async function createFolderHierarchy()
     {
+      const appBaseFolderString = appBaseString.concat(`folders/${rootId}/items`);
+
+      const responseFolderInfo =  await fetch(appBaseFolderString, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+      
       let rootFolderItems = await responseFolderInfo.json()
 
       console.log("root folder items: ", rootFolderItems);
