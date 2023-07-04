@@ -30,12 +30,6 @@
       const appBaseString = "https://app21.connect.trimble.com/tc/api/2.0/";
       const modelApiBaseString = "https://model-api21.connect.trimble.com/";
 
-      const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
-
-      const projectForestTreesString = orgBaseString.concat(`forests/project:${projectId}:data/trees`);
-
-      const appProjectInfoProject = appBaseString.concat(`projects/${projectId}`);
-
       console.log("Api:");
 
       const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
@@ -54,6 +48,12 @@
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
          }
+
+      const projectForestString = orgBaseString.concat(`forests/project:${projectId}:data/trees/ProjectContext/nodes/PSetLibs`);
+
+      const projectForestTreesString = orgBaseString.concat(`forests/project:${projectId}:data/trees`);
+
+      const appProjectInfoProject = appBaseString.concat(`projects/${projectId}`);
 
       console.log("endApi:")
 
