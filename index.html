@@ -412,11 +412,6 @@
 
       var targetedFolderId = targetedFolder.id;
 
-      console.log("request body: ", JSON.stringify({
-            "name":`${value}`,
-            "parentId":`${targetedFolderId}`
-         }));
-
          splitedString.forEach(string => {
             let responseCreation = null;
             if (responseCreation.errorcode == "DUPLICATE_NAME" && responseCreation)
@@ -425,7 +420,6 @@
                console.log("response creation folder: ", responseCreation)
             }
          })
-
 
       let responseCreation = await responseCreateFolder.json();
 
