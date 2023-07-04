@@ -85,12 +85,6 @@
          }
       });
 
-      let rootFolderItems = await responseFolderInfo.json()
-
-      console.log("root folder items: ", rootFolderItems);
-
-      
-
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
       
@@ -347,6 +341,10 @@
    }
     async function createFolderHierarchy()
     {
+      let rootFolderItems = await responseFolderInfo.json()
+
+      console.log("root folder items: ", rootFolderItems);
+
       var targetedFolder;
       
       rootFolderItems.forEach(folder => {
