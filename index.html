@@ -55,6 +55,16 @@
 
       const appProjectInfoProject = appBaseString.concat(`projects/${projectId}`);
 
+      
+
+      const responseProjectInfo =  await fetch(appProjectInfoProject, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+
       console.log("endApi:")
 
     getData();
