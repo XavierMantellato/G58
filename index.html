@@ -62,6 +62,11 @@
          }
       });
 
+      let projectInfo = await responseProjectInfo.json();
+      var rootId = projectInfo.rootId;
+      
+      console.log("baseFolderId: ", rootId);
+
       console.log("endApi:")
 
     getData();
@@ -69,11 +74,6 @@
     async function getData() 
     {
       console.log("debut test: ");
-      
-      let projectInfo = await responseProjectInfo.json();
-      var rootId = projectInfo.rootId;
-      
-      console.log("baseFolderId: ", rootId);
 
       const responseModel = await API.viewer.getModels();
       const model = responseModel[2];
