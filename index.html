@@ -354,15 +354,17 @@
      var projectInstance = new ProjectClass(responseProject.id, responseProject.name);
 
      console.log("projectInstance: ", projectInstance);
-     
 
      let targetedFolderId = targetedFolder.id;
+     
      console.log("responseCreateFolder:", appBaseString.concat("folders"));
 
    //   for (let index = 0; index < psetsValues.length; index++) {
    //    let value = psetsValues[index];
 
-console.log("request body: ", JSON.stringify({
+      var value = splitedString[0];
+
+   console.log("request body: ", JSON.stringify({
             "name":`${value}`,
             "parentId":`${targetedFolderId}`
          }));
