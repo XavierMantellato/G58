@@ -356,7 +356,7 @@
      console.log("projectInstance: ", projectInstance);
 
      let targetedFolderId = targetedFolder.id;
-     
+
      console.log("responseCreateFolder:", appBaseString.concat("folders"));
 
    //   for (let index = 0; index < psetsValues.length; index++) {
@@ -380,6 +380,8 @@
             'Authorization': `Bearer ${accessToken}`
          }
       });
+
+      console.log("responseFolderCreation: ", await responseCreateFolder.json());
    // };
 
 }
