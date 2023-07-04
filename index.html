@@ -13,6 +13,8 @@
 </head>
 <body>
 
+   <h2>Arkance Extension</h2>
+
    <hr>
    
    <div style="text-align: center; margin: 5px;">
@@ -69,6 +71,9 @@
       var rootId = projectInfo.rootId;
       
       console.log("baseFolderId: ", rootId);
+
+      const responseModel = await API.viewer.getModels();
+      const model = responseModel[2];
 
       console.log("endApi:")
 
@@ -301,6 +306,9 @@
 
    async function createFolderHierarchy()
     {
+      const responseModel = await API.viewer.getModels();
+      const model = responseModel[2];
+
       const responseProjectInfo =  await fetch(appProjectInfoProject, {
          method: 'GET',
          headers: {
@@ -308,11 +316,10 @@
             'Authorization': `Bearer ${accessToken}`
          }
       });
-
       console.log("creating folder:");
-
+      
       const appBaseFolderString = appBaseString.concat(`folders/${rootId}/items`);
-
+      
       const responseFolderInfo =  await fetch(appBaseFolderString, {
          method: 'GET',
          headers: {
@@ -322,9 +329,9 @@
       });
 
       let rootFolderItems = await responseFolderInfo.json()
-
+      
       console.log("root folder items: ", rootFolderItems);
-
+      
       var targetedFolder;
       
       rootFolderItems.forEach(folder => {
@@ -332,9 +339,10 @@
             targetedFolder = folder
          }
       });
-
+      
       console.log("targetedFolder: ", targetedFolder);
-
+      
+      const modelInfoString = modelApiBaseString.concat(`models/${model.id}/entities`);
       var entityInfoString = modelInfoString.concat(`/$0jYGS7xnH7vOFpUYhDxEkx`);
 
       var params = "include=id,idx,psets,psets.name";
