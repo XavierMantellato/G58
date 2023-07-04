@@ -13,7 +13,7 @@
 </head>
 <body>
    <div style="text-align: center; margin: 5px;">
-      <button id="btnRefresh" onclick="createFolderHierarchy()">Create folders</button>
+      <button id="btnCreate">Create folders</button>
    </div>
 
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
@@ -329,7 +329,9 @@
    // };
 
    }
-    
+   
+   document.getElementById("btnCreate").onclick = function() { createFolderHierarchy() };
+
    async function createFolderHierarchy()
     {
       const responseProjectInfo =  await fetch(appProjectInfoProject, {
