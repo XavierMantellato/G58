@@ -221,43 +221,7 @@
 
       var entityId = modelEntities[655].id;
 
-      var entityInfoString = modelInfoString.concat(`/${entityId}`);
-
-      var params = "include=id,idx,psets,psets.name";
-
-      // console.log("entityinfosstring:",entityInfoString);
-      // console.log("headers:",headers);
-      // console.log("params:",params);
-
-      // var entityInfo = await GetRequest(entityInfoString, headers, params);
-
-      const responseEntityIbfo = await fetch(entityInfoString + '?' + new URLSearchParams(params), {
-        method: 'GET',
-        headers: {
-           'Content-Type': 'application/json',
-           'Authorization': `Bearer ${accessToken}`
-         }
-      });
-
-      const entityInfoJson = await responseEntityIbfo.json();
-
-      console.log("entity infos json: ", entityInfoJson);
-
-      var psetsArray = new Array();
       
-      psetsArray = entityInfoJson.psets;
-
-      console.log("psetsArray: ", psetsArray);
-
-      var pset;
-
-      psetsArray.forEach(object => {
-         if (object.name == 'Project_Identification') {
-            pset = object;
-         }
-      });
-
-      console.log("pset: ", pset);
 
       // console.log("entity infos: ", entityInfo);
 
@@ -370,6 +334,44 @@
       });
 
       console.log("targetedFolder: ", targetedFolder);
+
+      var entityInfoString = modelInfoString.concat(`/$0jYGS7xnH7vOFpUYhDxEkx`);
+
+      var params = "include=id,idx,psets,psets.name";
+
+      // console.log("entityinfosstring:",entityInfoString);
+      // console.log("headers:",headers);
+      // console.log("params:",params);
+
+      // var entityInfo = await GetRequest(entityInfoString, headers, params);
+
+      const responseEntityIbfo = await fetch(entityInfoString + '?' + new URLSearchParams(params), {
+        method: 'GET',
+        headers: {
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${accessToken}`
+         }
+      });
+
+      const entityInfoJson = await responseEntityIbfo.json();
+
+      console.log("entity infos json: ", entityInfoJson);
+
+      var psetsArray = new Array();
+      
+      psetsArray = entityInfoJson.psets;
+
+      console.log("psetsArray: ", psetsArray);
+
+      var pset;
+
+      psetsArray.forEach(object => {
+         if (object.name == 'Project_Identification') {
+            pset = object;
+         }
+      });
+
+      console.log("pset: ", pset);
 
       var stringToSplit = `${pset.values[0]}`;
 
