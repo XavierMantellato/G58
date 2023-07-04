@@ -413,7 +413,6 @@
       var targetedFolderId = targetedFolder.id;
 
          splitedString.forEach(string => {
-            let responseCreation = null;
             if (responseCreation.errorcode == "DUPLICATE_NAME" && responseCreation)
             {
                responseCreation = createFolder(string, targetedFolderId, accessToken);
