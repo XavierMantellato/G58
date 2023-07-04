@@ -71,7 +71,7 @@
       });
       
       let projectInfo = await responseProjectInfo.json();
-      const rootId = projectInfo.rootId;
+      var rootId = projectInfo.rootId;
       
       console.log("baseFolderId: ", rootId);
 
@@ -340,7 +340,7 @@
             'Authorization': `Bearer ${accessToken}`
          }
       });
-      
+
       let rootFolderItems = await responseFolderInfo.json()
 
       console.log("root folder items: ", rootFolderItems);
