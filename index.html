@@ -349,7 +349,7 @@
 
    // };
 
-      console.log("entities", entities);
+      // console.log("entities", entities);
 
      var projectInstance = new ProjectClass(responseProject.id, responseProject.name);
 
@@ -362,18 +362,22 @@
    //   for (let index = 0; index < psetsValues.length; index++) {
    //    let value = psetsValues[index];
 
+console.log("request body: ", JSON.stringify({
+            "name":`${value}`,
+            "parentId":`${targetedFolderId}`
+         }));
 
-   //    var responseCreateFolder = await fetch(appBaseString.concat("folders"), {
-   //       method:"POST",
-   //       body: JSON.stringify({
-   //          "name":`${value}`,
-   //          "parentId":`${targetedFolderId}`
-   //       }),
-   //       headers: {
-   //          'Content-Type': 'application/json',
-   //          'Authorization': `Bearer ${accessToken}`
-   //       }
-   //    });
+      var responseCreateFolder = await fetch(appBaseString.concat("folders"), {
+         method:"POST",
+         body: JSON.stringify({
+            "name":`${value}`,
+            "parentId":`${targetedFolderId}`
+         }),
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
    // };
 
 }
