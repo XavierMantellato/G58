@@ -19,3 +19,9 @@ th
     border: 1px solid;
     margin: 5;
 }
+
+.Title2-center
+{
+    margin: 5px;
+    text-align: center;
+}
