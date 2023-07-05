@@ -132,7 +132,7 @@
       console.log("targetedFolder: ", targetedFolder);
       
       // modelEntities.forEach(async (entity) => {
-         var entityId = modelEntities[0].id;
+         var entityId = modelEntities[564].id;
 
          var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
 
@@ -140,9 +140,9 @@
 
          psetsArray = responseEntityInfo.psets;
 
-         // console.log("psetsArray: ", psetsArray);
+         console.log("psetsArray: ", psetsArray);
 
-         var pset;
+         var psetIdentification;
 
          psetsArray.forEach(object => {
             if (object.name == 'Project_Identification') {
