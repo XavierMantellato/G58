@@ -36,8 +36,18 @@
 
       console.log("Api:");
 
-      const API = await TrimbleConnectWorkspace.connect(window.parent, (event, data) => {
-        console.log("Event: ", event, data);
+      var accessToken;
+
+      const API = await TrimbleConnectWorkspace.connect(window.parent, (event, args) => {
+         switch (event) {
+            case "extension.accessToken: ":
+               
+               console.log("AccessToken or status: ", args.data);
+               break;
+         
+            default:
+         }
+        console.log("Event: ", event, args);
       });
 
       const responseProject = await API.project.getProject();
@@ -46,7 +56,7 @@
 
       const responseAccessToken = await API.extension.requestPermission("accesstoken");
       console.log("responseAccessToken: ", responseAccessToken);
-      const accessToken = responseAccessToken;
+      accessToken = responseAccessToken;
     	
       var headers = {
             'Content-Type': 'application/json',
