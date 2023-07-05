@@ -204,11 +204,10 @@
             var responseCreation = await createFolder(string, targetedFolderId, accessToken);
             console.log("response creation folder: ", responseCreation);
             targetedFolderId = responseCreation.id
-         } 
+         }
          catch (error) 
          {
-            console.log("folders creation error: ", error);
-            responseCreation = [];
+            console.log("error line 210: ", error);            
          }
       }
 
@@ -228,7 +227,9 @@
 
     async function createFolder(name, parentId, acccessToken)
     {
-      var responseCreateFolder = await fetch(appBaseString.concat("folders"), {
+      try 
+      {
+         var responseCreateFolder = await fetch(appBaseString.concat("folders"), {
                method:"POST",
                body: JSON.stringify({
                   "name":`${name}`,
@@ -243,6 +244,11 @@
          var responseCreation = await responseCreateFolder.json();
 
          return responseCreation;
+      } 
+      catch (error) 
+      {
+         return error;
+      }
     }
  
     async function GetFolderItems(folderId)
