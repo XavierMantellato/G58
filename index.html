@@ -80,7 +80,7 @@
       let projectInfo = await responseProjectInfo.json();
       var rootId = projectInfo.rootId;
       
-      console.log("baseFolderId: ", rootId);
+      console.log("rootFolderId: ", rootId);
 
       const responseModels = await API.viewer.getModels();
 
@@ -98,20 +98,6 @@
       const model = responseModel[2];
 
       var params = "include=id,idx,psets,psets.name";
-
-      // var modelContext = {};
-
-      // const modelInfoString = modelApiBaseString.concat(`models/${model.id}/entities`);
-
-      // const responseModelInfo =  await fetch(modelInfoString, {
-      //    method: 'GET',
-      //    headers: {
-      //       'Content-Type': 'application/json',
-      //       'Authorization': `Bearer ${accessToken}`
-      //    }
-      // });
-
-      // let modelInfos = await responseModelInfo.json();
 
       let modelInfos = await GetmodelEntities(model.id, accessToken);
 
@@ -145,10 +131,8 @@
       
       console.log("targetedFolder: ", targetedFolder);
       
-      // console.log("model enitty: ", modelEntities[0]);
-
-      modelEntities.forEach(async (entity) => {
-         var entityId = entity.id;
+      // modelEntities.forEach(async (entity) => {
+         var entityId = modelEntities[0].id;
 
          var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
 
@@ -195,7 +179,7 @@
                   console.log("error line 210: ", error);            
                }
             }
-      })
+      // })
 
       // var entityInfoString = modelInfoString.concat(`/${modelEntities[0].id}`);
 
