@@ -203,6 +203,7 @@
             
             var responseCreation = await createFolder(string, targetedFolderId, accessToken);
             console.log("response creation folder: ", responseCreation);
+            targetedFolderId = responseCreation.id
          } 
          catch (error) 
          {
