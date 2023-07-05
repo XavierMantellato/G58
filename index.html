@@ -168,7 +168,7 @@
             {
                try 
                {
-                  const string = splitedString[iRow];
+                  const string = splitedString[iRow].trim();
                   
                   var responseCreation = await createFolder(string, targetedFolderId, accessToken);
                   console.log("response creation folder: ", responseCreation);
