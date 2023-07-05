@@ -22,7 +22,7 @@ this.API = await WorkspaceAPI.connect(
 console.log(this.API);
 
 //Request for the access token.
-this.API.extension.getPermission("accesstoken").then((accessToken: string) => {
+this.API.extension.getPermission("accesstoken").then((accessToken) => {
     //Current user access token or status: accessToken
     console.log(accesstoken);
 });
