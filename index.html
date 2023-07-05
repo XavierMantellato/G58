@@ -195,14 +195,30 @@
 
       var targetedFolderId = targetedFolder.id;
 
-         splitedString.forEach(string => {
-         //    if (responseCreation.errorcode == "DUPLICATE_NAME" && responseCreation)
-         //    {
-               var responseCreation = createFolder(string, targetedFolderId, accessToken);
-               console.log("response creation folder: ", responseCreation)
-               // if (responseCreation.success)
-            // }
-         })
+      for (let iRow = 0; iRow < splitedString.length; iRow++) 
+      {
+         try 
+         {
+            const string = splitedString[iRow];
+            
+            var responseCreation = await createFolder(string, targetedFolderId, accessToken);
+            console.log("response creation folder: ", responseCreation);
+         } 
+         catch (error) 
+         {
+            console.log("folders creation error: ", error);
+            responseCreation = [];
+         }
+      }
+
+         // splitedString.forEach(async (string) => {
+         // //    if (responseCreation.errorcode == "DUPLICATE_NAME" && responseCreation)
+         // //    {
+               // var responseCreation = await createFolder(string, targetedFolderId, accessToken);
+               // console.log("response creation folder: ", responseCreation)
+         //       // if (responseCreation.success)
+         //    // }
+         // })
 
       let responseCreation = await responseCreateFolder.json();
 
@@ -222,7 +238,9 @@
                   'Authorization': `Bearer ${accessToken}`
                }
             });
+
          var responseCreation = await responseCreateFolder.json();
+
          return responseCreation;
     }
  
