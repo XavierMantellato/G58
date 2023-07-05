@@ -198,7 +198,7 @@
          splitedString.forEach(string => {
          //    if (responseCreation.errorcode == "DUPLICATE_NAME" && responseCreation)
          //    {
-               responseCreation = createFolder(string, targetedFolderId, accessToken);
+               var responseCreation = createFolder(string, targetedFolderId, accessToken);
                console.log("response creation folder: ", responseCreation)
                // if (responseCreation.success)
             // }
