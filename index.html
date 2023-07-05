@@ -72,9 +72,9 @@
       
       console.log("baseFolderId: ", rootId);
 
-      const responseModel = await API.viewer.getModels();
+      const responseModels = await API.viewer.getModels();
 
-      console.log("models: ", responseModel);
+      console.log("models: ", await responseModels.json());
 
       // const model = responseModel[2];
 
@@ -313,6 +313,8 @@
       const model = responseModel[2];
 
       var params = "include=id,idx,psets,psets.name";
+
+      var modelContext = {};
 
       const modelInfoString = modelApiBaseString.concat(`models/${model.id}/entities`);
 
