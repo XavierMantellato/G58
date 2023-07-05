@@ -41,7 +41,7 @@
       const API = await TrimbleConnectWorkspace.connect(window.parent, (event, args) => {
          switch (event) {
             case "extension.accessToken: ":
-               
+
                console.log("AccessToken or status: ", args.data);
                break;
          
@@ -101,17 +101,21 @@
 
       // var modelContext = {};
 
-      const modelInfoString = modelApiBaseString.concat(`models/${model.id}/entities`);
+      // const modelInfoString = modelApiBaseString.concat(`models/${model.id}/entities`);
 
-      const responseModelInfo =  await fetch(modelInfoString, {
-         method: 'GET',
-         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-         }
-      });
+      // const responseModelInfo =  await fetch(modelInfoString, {
+      //    method: 'GET',
+      //    headers: {
+      //       'Content-Type': 'application/json',
+      //       'Authorization': `Bearer ${accessToken}`
+      //    }
+      // });
 
-      let modelInfos = await responseModelInfo.json();
+      // let modelInfos = await responseModelInfo.json();
+
+      let modelInfos = await GetmodelEntities(model.id, accessToken);
+
+      console.log("modelInfos",modelInfos);
 
       let modelEntities = modelInfos.items;
 
@@ -276,6 +280,21 @@
       return result;
     }
  
+    async function GetmodelEntities(modelId, accessToken)
+    {
+      const responseModelInfo =  await fetch(modelApiBaseString.concat(`models/${modelId}/entities`), {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+
+      let modelInfos = await responseModelInfo.json();
+
+      return modelInfos;
+    }
+
  </script>
 </body>
 </html>
