@@ -130,22 +130,10 @@
       });
 
       console.log("creating folder:");
-      
-      // const appBaseFolderString = appBaseString.concat(`folders/${rootId}/items`);
-      
-      // const responseFolderInfo =  await fetch(appBaseFolderString, {
-      //    method: 'GET',
-      //    headers: {
-      //       'Content-Type': 'application/json',
-      //       'Authorization': `Bearer ${accessToken}`
-      //    }
-      // });
 
       let rootFolderItems = await GetFolderItems(rootId);
       
       console.log("root folder items:", rootFolderItems);
-      
-      // console.log("root folder items: ", await rootFolderItems.json());
       
       var targetedFolder;
       
@@ -157,11 +145,61 @@
       
       console.log("targetedFolder: ", targetedFolder);
       
-      console.log("model enitty: ", modelEntities[0]);
+      // console.log("model enitty: ", modelEntities[0]);
 
-      var entityInfoString = modelInfoString.concat(`/${modelEntities[0].id}`);
+      modelEntities.forEach(async (entity) => {
+         var entityId = entity.id;
 
-      console.log("entity info string: ", entityInfoString);
+         var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
+
+         let psetsArray = new Array()
+
+         psetsArray = entityInfoJson.psets;
+
+         // console.log("psetsArray: ", psetsArray);
+
+         var pset;
+
+         psetsArray.forEach(object => {
+            if (object.name == 'Project_Identification') {
+               pset = object;
+            }
+         });
+
+         // console.log("pset: ", pset);
+
+         var stringToSplit = `${pset.values[0]}`;
+
+         // console.log("stringToSplit: ", stringToSplit);
+
+         var splitedString = new Array();
+
+         splitedString = stringToSplit.split('-');
+
+         console.log("splitedString: ", splitedString);
+
+         var targetedFolderId = targetedFolder.id;
+
+            for (let iRow = 0; iRow < splitedString.length; iRow++) 
+            {
+               try 
+               {
+                  const string = splitedString[iRow];
+                  
+                  var responseCreation = await createFolder(string, targetedFolderId, accessToken);
+                  console.log("response creation folder: ", responseCreation);
+                  targetedFolderId = responseCreation.id
+               }
+               catch (error) 
+               {
+                  console.log("error line 210: ", error);            
+               }
+            }
+      })
+
+      // var entityInfoString = modelInfoString.concat(`/${modelEntities[0].id}`);
+
+      // console.log("entity info string: ", entityInfoString);
 
       // console.log("entityinfosstring:",entityInfoString);
       // console.log("headers:",headers);
@@ -169,61 +207,19 @@
 
       // var entityInfo = await GetRequest(entityInfoString, headers, params);
 
-      const responseEntityIbfo = await fetch(entityInfoString + '?' + new URLSearchParams(params), {
-        method: 'GET',
-        headers: {
-           'Content-Type': 'application/json',
-           'Authorization': `Bearer ${accessToken}`
-         }
-      });
+      // const responseEntityIbfo = await fetch(entityInfoString + '?' + new URLSearchParams(params), {
+      //   method: 'GET',
+      //   headers: {
+      //      'Content-Type': 'application/json',
+      //      'Authorization': `Bearer ${accessToken}`
+      //    }
+      // });
 
-      const entityInfoJson = await responseEntityIbfo.json();
+      // const entityInfoJson = await responseEntityIbfo.json();
 
-      console.log("entity infos json: ", entityInfoJson);
+      // console.log("entity infos json: ", entityInfoJson);
 
-      var psetsArray = new Array();
-      
-      psetsArray = entityInfoJson.psets;
-
-      console.log("psetsArray: ", psetsArray);
-
-      var pset;
-
-      psetsArray.forEach(object => {
-         if (object.name == 'Project_Identification') {
-            pset = object;
-         }
-      });
-
-      console.log("pset: ", pset);
-
-      var stringToSplit = `${pset.values[0]}`;
-
-      console.log("stringToSplit: ", stringToSplit);
-
-      var splitedString = new Array();
-
-      splitedString = stringToSplit.split('-');
-
-      console.log("splitedString: ", splitedString);
-
-      var targetedFolderId = targetedFolder.id;
-
-      for (let iRow = 0; iRow < splitedString.length; iRow++) 
-      {
-         try 
-         {
-            const string = splitedString[iRow];
-            
-            var responseCreation = await createFolder(string, targetedFolderId, accessToken);
-            console.log("response creation folder: ", responseCreation);
-            targetedFolderId = responseCreation.id
-         }
-         catch (error) 
-         {
-            console.log("error line 210: ", error);            
-         }
-      }
+      // var psetsArray = new Array();
 
          // splitedString.forEach(async (string) => {
          // //    if (responseCreation.errorcode == "DUPLICATE_NAME" && responseCreation)
@@ -283,6 +279,21 @@
     async function GetmodelEntities(modelId, accessToken)
     {
       const responseModelInfo =  await fetch(modelApiBaseString.concat(`models/${modelId}/entities`), {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+
+      let modelInfos = await responseModelInfo.json();
+
+      return modelInfos;
+    }
+
+    async function GetEntityInfo(modelId, accessToken, entityId, params)
+    {
+      const responseModelInfo =  await fetch(modelApiBaseString.concat(`models/${modelId}/entities/${entityId}`) + '?' + new URLSearchParams(params), {
          method: 'GET',
          headers: {
             'Content-Type': 'application/json',
