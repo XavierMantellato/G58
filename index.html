@@ -459,7 +459,11 @@
          }
       });
 
-      return responseFolderInfo;
+      const result = await responseFolderInfo.json();
+
+      console.log("get folder items result:", result);
+
+      return result;
     }
  </script>
 </body>
