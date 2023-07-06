@@ -145,9 +145,9 @@
 
       console.log("targetedFolder: ", targetedFolder);
       
-      await modelEntities.forEach(async (entity) => {
-         // var entityId = modelEntities[564].id;
-         var entityId = entity.id;
+      // await modelEntities.forEach(async (entity) => {
+         var entityId = modelEntities[564].id;
+         // var entityId = entity.id;
 
          var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
 
@@ -211,7 +211,7 @@
                }
             }
 
-         })
+         // })
          document.getElementById("CreationResponse").innerText = "Folders created";
 
       // var entityInfoString = modelInfoString.concat(`/${modelEntities[0].id}`);
