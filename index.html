@@ -189,6 +189,7 @@
                   if (createdFolders.includes(folder => folder.Name == string))
                   {
                      targetedFolderId = createdFolders.find(folder => folder.Name == string).Id;
+                     console.log("skip: ", targetedFolderId);
                      continue;
                   }
                   
