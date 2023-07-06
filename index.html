@@ -124,7 +124,7 @@
       var targetedFolder;
       
       rootFolderItems.forEach(folder => {
-         if (folder.name == "ListeProperties"){
+         if (folder.name == "Test Arkance"){
             targetedFolder = folder
          }
       });
@@ -133,6 +133,7 @@
       
       // modelEntities.forEach(async (entity) => {
          var entityId = modelEntities[564].id;
+         // var entityId = entity.id;
 
          var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
 
@@ -172,6 +173,7 @@
                   
                   var responseCreation = await createFolder(string, targetedFolderId, accessToken);
                   console.log("response creation folder: ", responseCreation);
+                  if (responseCreation.errormessage == "")
                   targetedFolderId = responseCreation.id
                }
                catch (error) 
