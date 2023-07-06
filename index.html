@@ -149,16 +149,19 @@
       
       console.log("Start for Entities");
 
-      for (let iRow = 0; iRow < modelEntities.length; iRow++) {
-         var entity = modelEntities[iRow].id;
+      // for (let iRow = 0; iRow < modelEntities.length; iRow++) {
+      //    var entity = modelEntities[iRow].id;
 
+      for (const entity of modelEntities) {
+
+         console.log("entity for ... of: ", entity)
          // await modelEntities.forEach(async (entity) => {
             // var entityId = modelEntities[564].id;
             var entityId = entity.id;
             
             var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
             
-            let psetsArray = new Array();
+            let psetsArray = new Array()
             
             psetsArray = responseEntityInfo.psets;
             
