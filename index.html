@@ -137,7 +137,11 @@
             baseFolder = folder;
          }
       });
-      
+
+      var baseFolderModel = new Folder(baseFolder.id, "Test Arkance");
+
+      console.log("baseFolderModel: ", baseFolderModel);
+
       console.log("targetedFolder: ", targetedFolder);
       
       // modelEntities.forEach(async (entity) => {
@@ -195,7 +199,7 @@
 
                   if (responseCreation.errormessage == "DUPLICATE_NAME")
                   {
-
+                     targetedFolderId = GetFolder(createdFolders.find(folder => folder.Name = string).Id)
                   }
                   targetedFolderId = responseCreation.id
                }
