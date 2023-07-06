@@ -43,6 +43,8 @@
 
       console.log("Api:");
 
+      var createdFolders = new Array();
+
       var accessToken;
 
       const API = await TrimbleConnectWorkspace.connect(window.parent, (event, args) => {
@@ -145,7 +147,7 @@
 
       console.log("targetedFolder: ", targetedFolder);
 
-      var createdFolders = new Array();
+      
       
       // await modelEntities.forEach(async (entity) => {
          var entityId = modelEntities[564].id;
