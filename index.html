@@ -188,7 +188,7 @@
                const string = splitedString[iRow].trim();
                try 
                {
-                  if (createdFolders.includes(folder => folder.Name == string))
+                  if (createdFolders.filter(folder => folder.Name == string).length != 0)
                   {
                      targetedFolderId = createdFolders.find(folder => folder.Name == string).Id;
                      console.log("skipped: ", targetedFolderId);
