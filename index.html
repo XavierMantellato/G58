@@ -5,7 +5,12 @@
 	
    <link rel="stylesheet" type="text/css" href="./CSS/index.css">
 	<script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
+
+   <!-- Models -->
    <script src="./ModelsJs/Project.js"></script>
+   <script src="./ModelsJs/Folder.js"></script>
+
+   <!-- Helpers -->
    <script src="./ModelsJs/API_Rests/PsetsRequests.js"></script>
    <script src="./Helpers/RequestHelper.js"></script>
 	
@@ -124,10 +129,12 @@
       console.log("root folder items:", rootFolderItems);
       
       var targetedFolder;
+      var baseFolder;
       
       rootFolderItems.forEach(folder => {
          if (folder.name == "Test Arkance"){
-            targetedFolder = folder
+            targetedFolder = folder;
+            baseFolder = folder;
          }
       });
       
@@ -165,6 +172,8 @@
 
          console.log("splitedString: ", splitedString);
 
+         var createdFolders = new Array();
+
          var targetedFolderId = targetedFolder.id;
 
             for (let iRow = 0; iRow < splitedString.length; iRow++) 
@@ -174,8 +183,20 @@
                   const string = splitedString[iRow].trim();
                   
                   var responseCreation = await createFolder(string, targetedFolderId, accessToken);
+
                   console.log("response creation folder: ", responseCreation);
-                  // if (responseCreation.errormessage == "")
+
+                  createdFolders
+                     .push(
+                        new Folder(
+                           responseCreation.id,
+                           string)
+                           );
+
+                  if (responseCreation.errormessage == "DUPLICATE_NAME")
+                  {
+
+                  }
                   targetedFolderId = responseCreation.id
                }
                catch (error) 
@@ -294,6 +315,21 @@
       let modelInfos = await responseModelInfo.json();
 
       return modelInfos;
+    }
+
+    async function GetFolder(folderId)
+    {
+      const responseFolderInfo =  await fetch(appBaseString.concat(`folders/${folderId}`), {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+         }
+      });
+
+      const result = await responseFolderInfo.json();
+
+      return result;
     }
 
  </script>
