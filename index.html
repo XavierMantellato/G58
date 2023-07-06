@@ -146,81 +146,88 @@
       console.log("baseFolderModel: ", baseFolderModel);
 
       console.log("targetedFolder: ", targetedFolder);
-
       
-      
-      await modelEntities.forEach(async (entity) => {
-         // var entityId = modelEntities[564].id;
-         var entityId = entity.id;
+      console.log("Start for Entities");
 
-         var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
+      for (let iRow = 0; iRow < modelEntities.length; iRow++) {
+         var entity = modelEntities[iRow].id;
 
-         let psetsArray = new Array()
-
-         psetsArray = responseEntityInfo.psets;
-
-         // console.log("psetsArray: ", psetsArray);
-
-         var psetIdentification;
-
-         psetsArray.forEach(object => {
-            if (object.name == 'Project_Identification') {
-               psetIdentification = object;
-            }
-         });
-
-         // console.log("pset: ", pset);
-
-         var stringToSplit = `${psetIdentification.values[0]}`;
-
-         // console.log("stringToSplit: ", stringToSplit);
-
-         var splitedString = new Array();
-
-         splitedString = stringToSplit.split('-');
-
-         console.log("splitedString: ", splitedString);
-
-         var targetedFolderId = baseFolder.id;
-
-         console.log("targeted folder Id: ", targetedFolderId)
-         console.log("createdFolders: ", createdFolders)
-
+         // await modelEntities.forEach(async (entity) => {
+            // var entityId = modelEntities[564].id;
+            var entityId = entity.id;
+            
+            var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
+            
+            let psetsArray = new Array()
+            
+            psetsArray = responseEntityInfo.psets;
+            
+            // console.log("psetsArray: ", psetsArray);
+            
+            var psetIdentification;
+            
+            psetsArray.forEach(object => {
+               if (object.name == 'Project_Identification') {
+                  psetIdentification = object;
+               }
+            });
+            
+            // console.log("pset: ", pset);
+            
+            var stringToSplit = `${psetIdentification.values[0]}`;
+            
+            // console.log("stringToSplit: ", stringToSplit);
+            
+            var splitedString = new Array();
+            
+            splitedString = stringToSplit.split('-');
+            
+            console.log("splitedString: ", splitedString);
+            
+            var targetedFolderId = baseFolder.id;
+            
+            console.log("targeted folder Id: ", targetedFolderId)
+            console.log("createdFolders: ", createdFolders)
+            
+            console.log("start for string");
             for (let iRow = 0; iRow < splitedString.length; iRow++) 
             {
-               const string = splitedString[iRow].trim();
-               try 
+            const string = splitedString[iRow].trim();
+            try 
+            {
+               if (createdFolders.filter(folder => folder.Name == string).length != 0)
                {
-                  if (createdFolders.filter(folder => folder.Name == string).length != 0)
-                  {
-                     targetedFolderId = createdFolders.find(folder => folder.Name == string).Id;
-                     console.log("skipped: ", targetedFolderId);
-                     continue;
-                  }
-                  
-                  var responseCreation = await createFolder(string, targetedFolderId, accessToken);
-
-                  // console.log("response creation folder: ", responseCreation);
-
-                  let newFolder = new Folder(responseCreation.id, string);
-
-                  createdFolders.push(newFolder);
-
-                  // console.log("createdFolders: ", createdFolders);
-                  
-                     targetedFolderId = newFolder.Id;
+                  targetedFolderId = createdFolders.find(folder => folder.Name == string).Id;
+                  console.log("skipped: ", targetedFolderId);
+                  continue;
                }
-               catch (error) 
-               {
-                  console.log("error line 207: ", error);            
-               }
+               
+               var responseCreation = await createFolder(string, targetedFolderId, accessToken);
+               
+               // console.log("response creation folder: ", responseCreation);
+               
+               let newFolder = new Folder(responseCreation.id, string);
+               
+               createdFolders.push(newFolder);
+               
+               // console.log("createdFolders: ", createdFolders);
+               
+               targetedFolderId = newFolder.Id;
             }
-
-         })
-         document.getElementById("CreationResponse").innerText = "Folders created";
-
+            catch (error) 
+            {
+               console.log("error line 207: ", error);            
+            }
+         }
+         console.log("end for string");
+         
+      // })
+   }
+   console.log("End for Entities");
+   document.getElementById("CreationResponse").innerText = "Folders created";
+      
       // var entityInfoString = modelInfoString.concat(`/${modelEntities[0].id}`);
-
+      
       // console.log("entity info string: ", entityInfoString);
 
       // console.log("entityinfosstring:",entityInfoString);
