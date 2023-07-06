@@ -179,15 +179,18 @@
 
          var createdFolders = new Array();
 
-         var targetedFolderId = targetedFolder.id;
+         var targetedFolderId = baseFolder.id;
 
             for (let iRow = 0; iRow < splitedString.length; iRow++) 
             {
                const string = splitedString[iRow].trim();
                try 
                {
-                  if (createdFolders.includes(folder => folder.Name == string)) 
+                  if (createdFolders.includes(folder => folder.Name == string))
+                  {
                      targetedFolderId = createdFolders.find(folder => folder.Name == string).Id;
+                     continue;
+                  }
                   
                   var responseCreation = await createFolder(string, targetedFolderId, accessToken);
 
@@ -200,7 +203,7 @@
                            string)
                            );
                   
-                     targetedFolderId = responseCreation.id
+                     // targetedFolderId = responseCreation.id
                }
                catch (error) 
                {
