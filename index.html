@@ -144,6 +144,8 @@
       console.log("baseFolderModel: ", baseFolderModel);
 
       console.log("targetedFolder: ", targetedFolder);
+
+      var createdFolders = new Array();
       
       // await modelEntities.forEach(async (entity) => {
          var entityId = modelEntities[564].id;
@@ -177,8 +179,6 @@
 
          console.log("splitedString: ", splitedString);
 
-         var createdFolders = new Array();
-
          var targetedFolderId = baseFolder.id;
 
             for (let iRow = 0; iRow < splitedString.length; iRow++) 
@@ -189,7 +189,7 @@
                   if (createdFolders.includes(folder => folder.Name == string))
                   {
                      targetedFolderId = createdFolders.find(folder => folder.Name == string).Id;
-                     console.log("skip: ", targetedFolderId);
+                     console.log("skipped: ", targetedFolderId);
                      continue;
                   }
                   
