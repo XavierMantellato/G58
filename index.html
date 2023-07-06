@@ -200,9 +200,16 @@
 
                   if (responseCreation.errormessage == "DUPLICATE_NAME")
                   {
-                     targetedFolderId = GetFolder(createdFolders.find(folder => folder.Name = string).Id)
+                     targetedFolderId = 
+                        GetFolder(
+                           createdFolders
+                              .find(folder => folder.Name = string).Id
+                              )
                   }
-                  targetedFolderId = responseCreation.id
+                  else
+                  {
+                     targetedFolderId = responseCreation.id
+                  }
                }
                catch (error) 
                {
