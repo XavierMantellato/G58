@@ -18,7 +18,9 @@
    <hr>
    
    <div style="text-align: center; margin: 5px;">
-      <button id="btnCreate">Create folders</button>
+      <label>Folder creation</label>
+      <button id="btnCreate">Create</button>
+      <p id="CreationResponse"></p>
    </div>
 
 <!-- <script src="https://jonathang89.github.io/TrimbleConnectTest/script.js"/> -->
@@ -181,6 +183,8 @@
                   console.log("error line 210: ", error);            
                }
             }
+
+            document.getElementById("CreationResponse").innerText = "Folders created";
       // })
 
       // var entityInfoString = modelInfoString.concat(`/${modelEntities[0].id}`);
