@@ -204,15 +204,17 @@
                
                var responseCreation = await createFolder(string, targetedFolderId, accessToken);
                
+               targetedFolderId = responseCreation.id;
                // console.log("response creation folder: ", responseCreation);
                
-               let newFolder = new Folder(responseCreation.id, string);
-               
-               createdFolders.push(newFolder);
+               if (responseCreation.id !== undefined)
+               {
+                  let newFolder = new Folder(responseCreation.id, string);
+                  createdFolders.push(newFolder);
+               }
                
                // console.log("createdFolders: ", createdFolders);
                
-               targetedFolderId = newFolder.Id;
             }
             catch (error) 
             {
