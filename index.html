@@ -197,12 +197,9 @@
 
                   console.log("response creation folder: ", responseCreation);
 
-                  createdFolders
-                     .push(
-                        new Folder(
-                           responseCreation.id,
-                           string)
-                           );
+                  let newFolder = new Folder(responseCreation.id, string);
+
+                  createdFolders.push(newFolder);
 
                   console.log("createdFolders: ", createdFolders);
                   
