@@ -170,6 +170,10 @@
                let psetsArray = new Array()
                
                psetsArray = responseEntityInfo.psets;
+
+               if (psetsArray === undefined) {
+                  continue
+               }
                
                console.log("psetsArray: ", psetsArray);
                
