@@ -166,13 +166,17 @@
                var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
 
                console.log("Entity Info: ",responseEntityInfo)
+
+               if (responseEntityInfo.code === "NON_UNIQUE_ENTITY_IDENTIFIER"){
+                  continue;
+               }
                
                let psetsArray = new Array()
                
                psetsArray = responseEntityInfo.psets;
 
                if (psetsArray === undefined) {
-                  continue
+                  continue;
                }
                
                console.log("psetsArray: ", psetsArray);
