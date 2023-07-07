@@ -164,6 +164,8 @@
                var entityId = entity.id;
                
                var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
+
+               console.log("Entity Info: ",responseEntityInfo)
                
                let psetsArray = new Array()
                
