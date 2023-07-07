@@ -97,6 +97,21 @@
 
       // const model = responseModels[2];
 
+      let rootFolderItems = await GetFolderItems(rootId);
+      
+      console.log("root folder items:", rootFolderItems);
+      
+      var baseFolder;
+      
+      rootFolderItems.forEach(folder => {
+         if (folder.name == "Test Arkance")
+         {
+            baseFolder = folder;
+         }
+      });
+      
+      var baseFolderModel = new Folder(baseFolder.id, "Test Arkance");
+
       console.log("endApi:")
    
    document.getElementById("btnCreate").onclick = function() { createFolderHierarchy() };
@@ -129,21 +144,6 @@
       });
       
       console.log("creating folder:");
-      
-      let rootFolderItems = await GetFolderItems(rootId);
-      
-      console.log("root folder items:", rootFolderItems);
-      
-      var baseFolder;
-      
-      rootFolderItems.forEach(folder => {
-         if (folder.name == "Test Arkance")
-         {
-            baseFolder = folder;
-         }
-      });
-      
-      var baseFolderModel = new Folder(baseFolder.id, "Test Arkance");
       
       var targetedFolder = baseFolderModel;
       
