@@ -95,7 +95,7 @@
 
       console.log("models: ", responseModels);
 
-      const model = responseModels[2];
+      // const model = responseModels[2];
 
       console.log("endApi:")
    
@@ -103,19 +103,21 @@
 
    async function createFolderHierarchy()
     {
-      const responseModel = await API.viewer.getModels();
-      const model = responseModel[2];
-
-      var params = "include=id,idx,psets,psets.name";
-
+      for (const model of responseModels) {
+         
+         // const responseModel = await API.viewer.getModels();
+         // const model = responseModel[2];
+         
+         var params = "include=id,idx,psets,psets.name";
+         
       let modelInfos = await GetmodelEntities(model.id, accessToken);
-
+      
       console.log("modelInfos",modelInfos);
-
+      
       let modelEntities = modelInfos.items;
-
+      
       console.log("modelEntities: ", modelEntities);
-
+      
       const responseProjectInfo =  await fetch(appProjectInfoProject, {
          method: 'GET',
          headers: {
@@ -123,9 +125,9 @@
             'Authorization': `Bearer ${accessToken}`
          }
       });
-
+      
       console.log("creating folder:");
-
+      
       let rootFolderItems = await GetFolderItems(rootId);
       
       console.log("root folder items:", rootFolderItems);
@@ -142,31 +144,31 @@
       var baseFolderModel = new Folder(baseFolder.id, "Test Arkance");
       
       var targetedFolder = baseFolderModel;
-
+      
       console.log("baseFolderModel: ", baseFolderModel);
-
+      
       console.log("targetedFolder: ", targetedFolder);
       
       console.log("Start for Entities");
-
+      
       // for (let iRow = 0; iRow < modelEntities.length; iRow++) {
-      //    var entity = modelEntities[iRow].id;
-
-      for (const entity of modelEntities) {
-
-         console.log("entity for ... of: ", entity)
-         // await modelEntities.forEach(async (entity) => {
-            // var entityId = modelEntities[564].id;
-            var entityId = entity.id;
+         //    var entity = modelEntities[iRow].id;
+         
+         for (const entity of modelEntities) {
             
-            var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
-            
-            let psetsArray = new Array()
-            
-            psetsArray = responseEntityInfo.psets;
-            
-            console.log("psetsArray: ", psetsArray);
-            
+            console.log("entity for ... of: ", entity)
+            // await modelEntities.forEach(async (entity) => {
+               // var entityId = modelEntities[564].id;
+               var entityId = entity.id;
+               
+               var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
+               
+               let psetsArray = new Array()
+               
+               psetsArray = responseEntityInfo.psets;
+               
+               console.log("psetsArray: ", psetsArray);
+               
             var psetIdentification;
             
             psetsArray.forEach(object => {
@@ -195,78 +197,43 @@
             console.log("start for string");
             for (let iRow = 0; iRow < splitedString.length; iRow++) 
             {
-            const string = splitedString[iRow].trim();
-            try 
-            {
-               if (createdFolders.filter(folder => folder.Name == string).length != 0)
+               const string = splitedString[iRow].trim();
+               try 
                {
-                  targetedFolderId = createdFolders.find(folder => folder.Name == string).Id;
-                  console.log("skipped: ", targetedFolderId);
-                  continue;
+                  if (createdFolders.filter(folder => folder.Name == string).length != 0)
+                  {
+                     targetedFolderId = createdFolders.find(folder => folder.Name == string).Id;
+                     console.log("skipped: ", targetedFolderId);
+                     continue;
+                  }
+                  
+                  var responseCreation = await createFolder(string, targetedFolderId, accessToken);
+                  
+                  targetedFolderId = responseCreation.id;
+                  // console.log("response creation folder: ", responseCreation);
+               
+                  if (responseCreation.id !== undefined)
+                  {
+                     let newFolder = new Folder(responseCreation.id, string);
+                     createdFolders.push(newFolder);
+                  }
+                  
+                  // console.log("createdFolders: ", createdFolders);
+                  
                }
-               
-               var responseCreation = await createFolder(string, targetedFolderId, accessToken);
-               
-               targetedFolderId = responseCreation.id;
-               // console.log("response creation folder: ", responseCreation);
-               
-               if (responseCreation.id !== undefined)
+               catch (error) 
                {
-                  let newFolder = new Folder(responseCreation.id, string);
-                  createdFolders.push(newFolder);
+                  console.log("error line 207: ", error);            
                }
-               
-               // console.log("createdFolders: ", createdFolders);
-               
             }
-            catch (error) 
-            {
-               console.log("error line 207: ", error);            
-            }
+            console.log("end for string");
+            
+            // })
          }
-         console.log("end for string");
+         console.log("End for Entities");
+      }
+         document.getElementById("CreationResponse").innerText = "Folders created";
          
-      // })
-   }
-   console.log("End for Entities");
-   document.getElementById("CreationResponse").innerText = "Folders created";
-      
-      // var entityInfoString = modelInfoString.concat(`/${modelEntities[0].id}`);
-      
-      // console.log("entity info string: ", entityInfoString);
-
-      // console.log("entityinfosstring:",entityInfoString);
-      // console.log("headers:",headers);
-      // console.log("params:",params);
-
-      // var entityInfo = await GetRequest(entityInfoString, headers, params);
-
-      // const responseEntityIbfo = await fetch(entityInfoString + '?' + new URLSearchParams(params), {
-      //   method: 'GET',
-      //   headers: {
-      //      'Content-Type': 'application/json',
-      //      'Authorization': `Bearer ${accessToken}`
-      //    }
-      // });
-
-      // const entityInfoJson = await responseEntityIbfo.json();
-
-      // console.log("entity infos json: ", entityInfoJson);
-
-      // var psetsArray = new Array();
-
-         // splitedString.forEach(async (string) => {
-         // //    if (responseCreation.errorcode == "DUPLICATE_NAME" && responseCreation)
-         // //    {
-               // var responseCreation = await createFolder(string, targetedFolderId, accessToken);
-               // console.log("response creation folder: ", responseCreation)
-         //       // if (responseCreation.success)
-         //    // }
-         // })
-
-      // let responseCreation = await responseCreateFolder.json();
-
-      // console.log("responseFolderCreation: ", responseCreation);
     }
 
     async function createFolder(name, parentId, acccessToken)
