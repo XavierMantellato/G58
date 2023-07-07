@@ -162,6 +162,10 @@
             // await modelEntities.forEach(async (entity) => {
                // var entityId = modelEntities[564].id;
                var entityId = entity.id;
+
+               if (entityId === "No Identifier"){
+                  continue;
+               }
                
                var responseEntityInfo = await GetEntityInfo(model.id, accessToken, entityId, params);
 
