@@ -188,7 +188,7 @@
             var psetIdentification;
             
             psetsArray.forEach(object => {
-               if (object.name == 'SJM') {
+               if (object.name == /*'Project_Identification'*/'SJM') {
                   psetIdentification = object;
                }
             });
@@ -197,7 +197,7 @@
             
             var stringToSplit = `${psetIdentification.values[0]}`;
             
-            // console.log("stringToSplit: ", stringToSplit);
+            console.log("stringToSplit: ", stringToSplit);
             
             var splitedString = new Array();
             
