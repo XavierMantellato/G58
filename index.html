@@ -194,12 +194,17 @@
             });
             
             // console.log("pset: ", pset);
-            
+            console.log("pset identification:", psetIdentification);
+
             //To test on eiffage project
-            var stringToSplit = `${psetIdentification.values[1]}`;
+            // var stringToSplit = `${psetIdentification.values[1]}`;
             //To test on arkance test project
             // var stringToSplit = `${psetIdentification.values[0]}`;
             
+            if (stringToSplit === undefined){
+               continue;
+            }
+
             console.log("stringToSplit: ", stringToSplit);
             
             var splitedString = new Array();
