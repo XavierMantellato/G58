@@ -197,11 +197,11 @@
             console.log("pset identification:", psetIdentification);
 
             //To test on eiffage project
-            // var stringToSplit = `${psetIdentification.values[1]}`;
+            var stringToSplit = `${psetIdentification.values[1]}`;
             //To test on arkance test project
             // var stringToSplit = `${psetIdentification.values[0]}`;
             
-            if (stringToSplit === undefined){
+            if (stringToSplit === undefined || stringToSplit === Number){
                continue;
             }
 
