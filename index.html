@@ -215,7 +215,7 @@
             
             console.log("splitedString: ", splitedString);
             
-            if (Number.isNaN(splitedString)){
+            if (!Number.isNaN(Number.parseFloat(splitedString))){
                continue;
             }
 
