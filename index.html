@@ -215,6 +215,10 @@
             
             console.log("splitedString: ", splitedString);
             
+            if (!Number.isNaN(splitedString)){
+               continue;
+            }
+
             var targetedFolderId = baseFolder.id;
             
             console.log("targeted folder Id: ", targetedFolderId)
